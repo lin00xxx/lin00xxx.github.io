@@ -8,8 +8,8 @@
 <head>
   <meta charset="UTF-8">
 
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" href="/img/favicon.jpg">
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
@@ -26,8 +26,8 @@
 <meta property="og:site_name" content="dokiii">
 <meta property="og:description" content="Welcome to dokiii, a space for learning, life and thoughts.">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2026-10-07T14:39:39.452Z">
-<meta property="article:modified_time" content="2026-10-07T14:39:39.452Z">
+<meta property="article:published_time" content="2026-10-07T15:36:04.911Z">
+<meta property="article:modified_time" content="2026-10-07T15:36:04.911Z">
 <meta property="article:author" content="dokiii">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -315,17 +315,45 @@
 
   <div class="timeline">
     
-      <div class="timeline-item">
-        <!-- 右侧时间轴：圆点 + 竖线 + 时间 -->
-        <div class="timeline-axis">
+      <div class="timeline-item ">
+        <!-- 左侧时间轴：点击展开/收起 -->
+        <div class="timeline-axis timeline-toggle">
           <div class="timeline-dot"></div>
           <div class="timeline-time">
             <span class="timeline-date">10-07</span>
             <span class="timeline-year">2026</span>
+            <span class="timeline-hint">收起</span>
           </div>
         </div>
 
-        <!-- 左侧动态卡片 -->
+        <!-- 右侧动态卡片（默认收起，展开后显示） -->
+        <div class="timeline-card">
+          <div class="timeline-card-inner">
+            <div class="timeline-content markdown-body">
+              <p>七天假期结束，我每天五小时左右的家教也结束了。赚到钱真爽啊。虽然没出去玩但也老开心了。</p>
+<p><img src="/%5Cimg%5C01.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>每天都走一万多步，为什么还吃胖了！！</p>
+<p>这个假期过的好快，虽然什么正事也没干。</p>
+<p>明天就开始上课了，我一定好好学习！</p>
+<p><img src="/%5Cimg%5C02.jpg" srcset="/img/loading.gif" lazyload></p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="timeline-item collapsed">
+        <!-- 左侧时间轴：点击展开/收起 -->
+        <div class="timeline-axis timeline-toggle">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">
+            <span class="timeline-date">10-07</span>
+            <span class="timeline-year">2026</span>
+            <span class="timeline-hint">展开</span>
+          </div>
+        </div>
+
+        <!-- 右侧动态卡片（默认收起，展开后显示） -->
         <div class="timeline-card">
           <div class="timeline-card-inner">
             <div class="timeline-content markdown-body">
@@ -338,31 +366,20 @@
         </div>
       </div>
     
-      <div class="timeline-item">
-        <!-- 右侧时间轴：圆点 + 竖线 + 时间 -->
-        <div class="timeline-axis">
-          <div class="timeline-dot"></div>
-          <div class="timeline-time">
-            <span class="timeline-date">10-05</span>
-            <span class="timeline-year">2026</span>
-          </div>
-        </div>
-
-        <!-- 左侧动态卡片 -->
-        <div class="timeline-card">
-          <div class="timeline-card-inner">
-            <div class="timeline-content markdown-body">
-              <p>周末和朋友去了趟南湖，秋天的叶子黄了一半，拍了几张。</p>
-<p><img src="https://picsum.photos/seed/autumn/600/400" srcset="/img/loading.gif" lazyload alt="秋天"></p>
-<p>风很大，但阳光很好。</p>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    
   </div>
 </div>
+
+<script>
+document.querySelectorAll('.timeline-toggle').forEach(function(el) {
+  el.addEventListener('click', function() {
+    var item = el.closest('.timeline-item');
+    var isOpen = !item.classList.contains('collapsed');
+    item.classList.toggle('collapsed');
+    var hint = el.querySelector('.timeline-hint');
+    if (hint) hint.textContent = isOpen ? '展开' : '收起';
+  });
+});
+</script>
 
               </div>
             </div>
