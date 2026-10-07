@@ -1,0 +1,1095 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="dokiii">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="网络请求客户端(浏览器)通过 HTTP&#x2F;HTTPS 协议向服务器发出请求, 并接收响应数据的过程。 工作流程1.DNS将网址转成后端服务器的IP地址，找到数据接收处 2.TCP 建立浏览器和后端服务器的连接通道 3.HTTP协议请求html页面，拿取数据 4.解析数据与渲染 AJAX是一种不用刷新页面就能发送请求、更新页面的技术                 AJAX（不刷新页面发请求">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络请求">
+<meta property="og:url" content="https://lin00xxx.github.io/2026/10/07/notes/%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82/index.html">
+<meta property="og:site_name" content="dokiii">
+<meta property="og:description" content="网络请求客户端(浏览器)通过 HTTP&#x2F;HTTPS 协议向服务器发出请求, 并接收响应数据的过程。 工作流程1.DNS将网址转成后端服务器的IP地址，找到数据接收处 2.TCP 建立浏览器和后端服务器的连接通道 3.HTTP协议请求html页面，拿取数据 4.解析数据与渲染 AJAX是一种不用刷新页面就能发送请求、更新页面的技术                 AJAX（不刷新页面发请求">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-10-07T04:00:00.000Z">
+<meta property="article:modified_time" content="2026-10-07T14:09:39.884Z">
+<meta property="article:author" content="dokiii">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="HTTP">
+<meta property="article:tag" content="AJAX">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>网络请求 - dokiii</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lin00xxx.github.io","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70px;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>Home</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>Archives</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>Categories</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>Tags</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>About</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>Search</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="Light"
+               data-label-dark="Dark">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">Dark</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">网络请求</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="网络请求"><a href="#网络请求" class="headerlink" title="网络请求"></a>网络请求</h2><p>客户端(浏览器)通过 HTTP&#x2F;HTTPS 协议向服务器发出请求, 并接收响应数据的过程。</p>
+<h5 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h5><p>1.DNS将网址转成后端服务器的IP地址，找到数据接收处</p>
+<p>2.TCP 建立浏览器和后端服务器的连接通道</p>
+<p>3.HTTP协议请求html页面，拿取数据</p>
+<p>4.解析数据与渲染</p>
+<h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><p>是一种不用刷新页面就能发送请求、更新页面的技术</p>
+<pre><code class="hljs">                AJAX（不刷新页面发请求的技术）
+                          │
+                          ▼
+                HTTP 网络请求（底层协议）
+                 /      │      │      \
+              请求地址  请求方法  请求头   请求体
+              (URL)    (GET/   (Content- (数据)
+                       POST)    Type等)
+</code></pre>
+<h5 id="http状态码"><a href="#http状态码" class="headerlink" title="http状态码"></a>http状态码</h5><table>
+<thead>
+<tr>
+<th>现象</th>
+<th>含义</th>
+<th>谁处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>200</td>
+<td>请求成功拿到数据</td>
+<td>正常</td>
+</tr>
+<tr>
+<td>401</td>
+<td>token 失效 &#x2F; 没带 token，重新登录</td>
+<td>前端（存 token 逻辑）</td>
+</tr>
+<tr>
+<td>403</td>
+<td>账号登录成功，但角色权限不足</td>
+<td>后端（权限校验）</td>
+</tr>
+<tr>
+<td>404</td>
+<td>接口路由后端还没写，地址找不到</td>
+<td>后端开发接口</td>
+</tr>
+<tr>
+<td>422</td>
+<td>请求参数格式 &#x2F; 字段名不对</td>
+<td>前后端核对参数</td>
+</tr>
+<tr>
+<td>CORS error</td>
+<td>跨域拦截，没拿到返回</td>
+<td>后端配置 CORS</td>
+</tr>
+<tr>
+<td>ERR_CONNECTION_REFUSED</td>
+<td>连不上后端服务</td>
+<td>后端启动服务 &#x2F; 核对地址</td>
+</tr>
+</tbody></table>
+<h2 id="同步与异步"><a href="#同步与异步" class="headerlink" title="同步与异步"></a>同步与异步</h2><p>网络请求应当异步进行，相同时间内可以做很多事</p>
+<h5 id="同步："><a href="#同步：" class="headerlink" title="同步："></a>同步：</h5><figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;开始&#x27;</span>);<br>let result = longTask(); <span class="hljs-comment">// 假设运行 3 秒</span><br><span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;结果: &#x27;</span>, result);<br><span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;结束&#x27;</span>);<br><span class="hljs-comment">// 执行顺序: 开始 -&gt; (等待 3 秒) -&gt; 结果: xxx -&gt; 结束</span><br><span class="hljs-comment">// 中间卡住, 页面无法响应其他操作</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h5><figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;开始&#x27;</span>);<br>fetch(<span class="hljs-string">&#x27;/api/data&#x27;</span>)<br>.then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> res.json())<br>.then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;结果: &#x27;</span>, data));<br><span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;结束&#x27;</span>);<br><span class="hljs-comment">// 执行顺序: 开始 -&gt; 结束 -&gt; (稍后)结果: xxx</span><br><span class="hljs-comment">// 页面不会被卡住, 用户可以继续交互</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h2><p>本质上是一个字符串、不能有注释、最后一个值后不能有逗号、键值要加双引号</p>
+<p>例子</p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs llvm">&#123;<br><br>“<span class="hljs-keyword">store</span>”：“apple <span class="hljs-keyword">store</span>”<br><br>“products”：[<br><br>	&#123;<span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;iphone&quot;</span><span class="hljs-punctuation">,</span><br><br>	<span class="hljs-string">&quot;price&quot;</span>:<span class="hljs-number">5999</span>&#125;<br><br>	&#123;<span class="hljs-string">&quot;name&quot;</span>:<span class="hljs-string">&quot;macbook&quot;</span><span class="hljs-punctuation">,</span><br><br>	<span class="hljs-string">&quot;price&quot;</span>:<span class="hljs-number">9999</span> &#125;<br><br>]<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>用法</p>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs dns">fetch<span class="hljs-punctuation">(</span>&#x27;products.json&#x27;<span class="hljs-punctuation">)</span><br><br>	.then<span class="hljs-punctuation">(</span>res =&gt; res.json<span class="hljs-punctuation">(</span> <span class="hljs-punctuation">)</span><span class="hljs-punctuation">)</span><br><br>	.then<span class="hljs-punctuation">(</span>data =&gt; &#123;<br><br>		data.forEach<span class="hljs-punctuation">(</span>product =&gt; &#123; &#125;<span class="hljs-punctuation">)</span><br><br>&#125;<span class="hljs-punctuation">)</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h2><p>XMLHttprequest</p>
+<p>Fetch API</p>
+<p>Axios</p>
+<h2 id="请求头和请求体"><a href="#请求头和请求体" class="headerlink" title="请求头和请求体"></a>请求头和请求体</h2><h5 id="请求头-（post请求时必须有）"><a href="#请求头-（post请求时必须有）" class="headerlink" title="请求头 （post请求时必须有）"></a>请求头 （post请求时必须有）</h5><p>请求头是浏览器发送请求时附带的额外说明信息，描述请求的内容类型等</p>
+<table>
+<thead>
+<tr>
+<th align="left">请求头</th>
+<th align="left">含义</th>
+<th align="left">示例值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>Content-Type</code></td>
+<td align="left">告诉服务器我发的是什么格式的数据</td>
+<td align="left"><code>application/json</code>（JSON格式）、<code>text/html</code>（网页）、<code>image/png</code>（图片）</td>
+</tr>
+<tr>
+<td align="left"><code>Authorization</code></td>
+<td align="left">身份认证，告诉服务器“我是谁”</td>
+<td align="left"><code>Bearer eyJhbGciOiJ...</code>（token）</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">Content-Type</th>
+<th align="left">什么时候用</th>
+<th align="left">示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>application/json</code></td>
+<td align="left">前后端分离项目，发送&#x2F;接收JSON数据</td>
+<td align="left"><code>&#123;&quot;name&quot;: &quot;John&quot;&#125;</code></td>
+</tr>
+<tr>
+<td align="left"><code>multipart/form-data</code></td>
+<td align="left">上传文件（图片、文档等）</td>
+<td align="left">文件二进制数据</td>
+</tr>
+<tr>
+<td align="left"><code>application/x-www-form-urlencoded</code></td>
+<td align="left">传统表单提交</td>
+<td align="left"><code>name=John&amp;age=18</code></td>
+</tr>
+</tbody></table>
+<h5 id="请求体"><a href="#请求体" class="headerlink" title="请求体"></a>请求体</h5><p>发给服务器的核心数据 eg：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-keyword">const</span> <span class="hljs-title class_">Data</span> = &#123;<br>name: <span class="hljs-string">&#x27;John Doe&#x27;</span>,<br>email: <span class="hljs-string">&#x27;john.doe@example.com&#x27;</span><br>&#125;;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="XMLHttprequest"><a href="#XMLHttprequest" class="headerlink" title="XMLHttprequest"></a>XMLHttprequest</h2><p>在后台与服务器交换数据</p>
+<h5 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h5><table>
+<thead>
+<tr>
+<th align="left">属性&#x2F;方法</th>
+<th align="left">类型</th>
+<th align="left">含义</th>
+<th align="left">常用值&#x2F;说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>new XMLHttpRequest()</code></td>
+<td align="left">构造函数</td>
+<td align="left">创建XHR对象</td>
+<td align="left">必须第一步执行</td>
+</tr>
+<tr>
+<td align="left"><code>.open(method, url, async)</code></td>
+<td align="left">方法</td>
+<td align="left">初始化请求</td>
+<td align="left">method: GET&#x2F;POST, async: true(异步)</td>
+</tr>
+<tr>
+<td align="left"><code>.send(body)</code></td>
+<td align="left">方法</td>
+<td align="left">发送请求</td>
+<td align="left">body: POST时传数据，GET时省略或null</td>
+</tr>
+<tr>
+<td align="left"><code>.onreadystatechange</code></td>
+<td align="left">属性</td>
+<td align="left">状态变化时的回调函数</td>
+<td align="left">赋值一个函数，自动触发</td>
+</tr>
+<tr>
+<td align="left"><code>.readyState</code></td>
+<td align="left">属性</td>
+<td align="left">当前请求阶段</td>
+<td align="left">0→4，4表示完成</td>
+</tr>
+<tr>
+<td align="left"><code>.status</code></td>
+<td align="left">属性</td>
+<td align="left">HTTP状态码</td>
+<td align="left">200成功，404未找到，500服务器错误</td>
+</tr>
+<tr>
+<td align="left"><code>.statusText</code></td>
+<td align="left">属性</td>
+<td align="left">状态码对应的文字</td>
+<td align="left">“OK”、”Not Found”</td>
+</tr>
+<tr>
+<td align="left"><code>.responseText</code></td>
+<td align="left">属性</td>
+<td align="left">服务器返回的文本数据</td>
+<td align="left">JSON字符串或普通文本</td>
+</tr>
+<tr>
+<td align="left"><code>.responseXML</code></td>
+<td align="left">属性</td>
+<td align="left">服务器返回的XML数据</td>
+<td align="left">少用</td>
+</tr>
+<tr>
+<td align="left"><code>.response</code></td>
+<td align="left">属性</td>
+<td align="left">根据responseType返回的数据</td>
+<td align="left">比responseText更灵活</td>
+</tr>
+<tr>
+<td align="left"><code>.responseType</code></td>
+<td align="left">属性</td>
+<td align="left">设置返回数据的格式</td>
+<td align="left">“json”、”text”、”document”等</td>
+</tr>
+<tr>
+<td align="left"><code>.setRequestHeader()</code></td>
+<td align="left">方法</td>
+<td align="left">设置请求头</td>
+<td align="left">POST时需要设置Content-Type</td>
+</tr>
+<tr>
+<td align="left"><code>.getResponseHeader()</code></td>
+<td align="left">方法</td>
+<td align="left">获取指定的响应头</td>
+<td align="left"><code>xhr.getResponseHeader(&quot;Content-Type&quot;)</code></td>
+</tr>
+<tr>
+<td align="left"><code>.getAllResponseHeaders()</code></td>
+<td align="left">方法</td>
+<td align="left">获取所有响应头</td>
+<td align="left">返回字符串</td>
+</tr>
+<tr>
+<td align="left"><code>.abort()</code></td>
+<td align="left">方法</td>
+<td align="left">取消请求</td>
+<td align="left">中断正在进行的请求</td>
+</tr>
+<tr>
+<td align="left"><code>.timeout</code></td>
+<td align="left">属性</td>
+<td align="left">设置超时时间(毫秒)</td>
+<td align="left"><code>xhr.timeout = 3000</code></td>
+</tr>
+<tr>
+<td align="left"><code>.ontimeout</code></td>
+<td align="left">属性</td>
+<td align="left">超时时的回调函数</td>
+<td align="left"><code>xhr.ontimeout = function()&#123;&#125;</code></td>
+</tr>
+<tr>
+<td align="left"><code>.withCredentials</code></td>
+<td align="left">属性</td>
+<td align="left">跨域是否携带cookie</td>
+<td align="left">true&#x2F;false</td>
+</tr>
+<tr>
+<td align="left"><code>.onload</code></td>
+<td align="left">属性</td>
+<td align="left">请求成功完成时的回调</td>
+<td align="left">比onreadystatechange更简洁</td>
+</tr>
+<tr>
+<td align="left"><code>.onerror</code></td>
+<td align="left">属性</td>
+<td align="left">请求失败时的回调</td>
+<td align="left">网络错误时触发</td>
+</tr>
+<tr>
+<td align="left"><code>.onprogress</code></td>
+<td align="left">属性</td>
+<td align="left">接收数据进度回调</td>
+<td align="left">可用于大文件下载进度条</td>
+</tr>
+</tbody></table>
+<h5 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h5><p>&#x2F;&#x2F;GET请求</p>
+<p>1.创建对象</p>
+<p><code>const xhr =new XMLHttpRequest( );</code></p>
+<p>2.配置请求的基本信息</p>
+<p><code>xhr.open(&#39;请求方式&#39;，‘请求地址’，‘是否异步，一般用true异步’)</code></p>
+<p>3.监听事件，接受相应状态</p>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs dns">xhr.onreadystatechange = function <span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span> &#123;<br>if <span class="hljs-punctuation">(</span>xhr.readyState === <span class="hljs-number">4</span><span class="hljs-punctuation">)</span> &#123; // 表示请求完成<br><br>	if<span class="hljs-punctuation">(</span>xhr.status === <span class="hljs-number">200</span><span class="hljs-punctuation">)</span> &#123; // <span class="hljs-number">200</span>: 表示响应数据成功<br>//返回可操作的js对象<br>	const data = JSON.parse<span class="hljs-punctuation">(</span>xhr.responseText<span class="hljs-punctuation">)</span><span class="hljs-comment">;</span><br>	document.querySelector<span class="hljs-punctuation">(</span><span class="hljs-string">&quot;.name&quot;</span><span class="hljs-punctuation">)</span>.innerHTML=data.name<span class="hljs-comment">;</span><br>		&#125;<br>	&#125;<br>&#125;<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
+
+<p>4.错误处理</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript">xhr.<span class="hljs-property">onerror</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>		<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;result&#x27;</span>).<span class="hljs-property">textContent</span> = <span class="hljs-string">&#x27;网络错误, 请稍后再试。&#x27;</span>;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>5.发送请求</p>
+<p><code>xhr.send（）</code></p>
+<p>*以上步骤可简化为</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-comment">// 1. 创建XHR请求对象</span><br><span class="hljs-keyword">const</span> xhr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">XMLHttpRequest</span>();<br><br><span class="hljs-comment">// 2. 配置请求：用什么方式、去哪个地址、是否异步</span><br>xhr.<span class="hljs-title function_">open</span>(<span class="hljs-string">&#x27;GET&#x27;</span>, <span class="hljs-string">&#x27;#&#x27;</span>, <span class="hljs-keyword">true</span>);<br><br><span class="hljs-comment">// 3. 设置请求完成后的处理函数（请求成功且完成后自动触发）</span><br>xhr.onload = <span class="hljs-title function_">function</span>() &#123;<br>    <span class="hljs-comment">// 判断服务器返回的状态码是不是200（成功）</span><br>    <span class="hljs-keyword">if</span> (xhr.status === <span class="hljs-number">200</span>) &#123;<br>        <span class="hljs-comment">// 成功：把服务器返回的数据打印出来</span><br>        console.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;数据:&#x27;</span>, xhr.responseText);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-comment">// 失败：打印错误码（如404、500）</span><br>        console.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;请求失败:&#x27;</span>, xhr.status);<br>    &#125;<br>&#125;;<br><br><span class="hljs-comment">// 4. 设置网络出错时的处理函数（没网、地址连不上等情况）</span><br>xhr.onerror = <span class="hljs-title function_">function</span>() &#123;<br>    <span class="hljs-comment">// 把错误信息显示到页面上</span><br>    <span class="hljs-built_in">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;result&#x27;</span>).textContent = <span class="hljs-string">&#x27;网络错误: 无法连接服务器。&#x27;</span>;<br>&#125;;<br><br><span class="hljs-comment">// 5. 发送请求（这行写到最后，因为要先绑定好上面的监听器）</span><br>xhr.<span class="hljs-title function_">send</span>();<br></code></pre></td></tr></table></figure>
+
+<p>&#x2F;&#x2F;post请求 需要设置请求头</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-comment">// 创建请求对象</span><br><span class="hljs-keyword">const</span> xhr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">XMLHttpRequest</span>();<br>xhr.<span class="hljs-title function_">open</span>(<span class="hljs-string">&#x27;POST&#x27;</span>, <span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/posts&#x27;</span>, <span class="hljs-keyword">true</span>);<br><span class="hljs-comment">//设置请求头</span><br><span class="hljs-comment">// 注意：只要用POST/PUT/PATCH发送JSON数据，这行就必须写</span><br><br>xhr.<span class="hljs-title function_">setRequestHeader</span>(<span class="hljs-string">&#x27;Content-Type&#x27;</span>, <span class="hljs-string">&#x27;application/json&#x27;</span>);<br><br><span class="hljs-comment">//监听请求状态变化（收到响应触发）</span><br>xhr.onreadystatechange = function () &#123;<br>    <span class="hljs-comment">// 判断请求是否完成（4 = 完成）</span><br>    <span class="hljs-keyword">if</span> (xhr.readyState === <span class="hljs-number">4</span>) &#123;<br>        <span class="hljs-comment">// 判断服务器是否返回成功（200 = 成功）</span><br>        <span class="hljs-keyword">if</span> (xhr.status === <span class="hljs-number">200</span>) &#123;<br>            <span class="hljs-comment">// 成功：把服务器返回的JSON字符串转成JS对象</span><br>            <span class="hljs-keyword">const</span> response = JSON.<span class="hljs-title function_">parse</span>(xhr.responseText);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-comment">// 失败：收到了服务器的响应，但状态码不是200</span><br>            <span class="hljs-comment">// 例如：403(没权限)、404(地址不存在)、500(服务器出错)</span><br>	            					<span class="hljs-built_in">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;result&#x27;</span>).textContent = <span class="hljs-string">&#x27;请求失败: &#x27;</span> + xhr.status;<br>        &#125;<br>    &#125;<br>&#125;;<br><br><span class="hljs-comment">//监听网络错误（完全没收到响应时触发） </span><br>xhr.onerror = function () &#123;<br>    <span class="hljs-comment">// 这种情况包括：断网、服务器挂了、域名写错、跨域被拦截</span><br>    <span class="hljs-built_in">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;result&#x27;</span>).textContent = <span class="hljs-string">&#x27;网络错误, 请稍后重试。&#x27;</span>;<br>&#125;;<br><br><span class="hljs-comment">// 准备要发送的数据</span><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">Data</span> = &#123;<br>    title: <span class="hljs-string">&#x27;我学习前端的过程&#x27;</span>,<br>    body: <span class="hljs-string">&#x27;我有在好好写博客, 好好写作业, 好好学习前端这门技术&#x27;</span>,<br>&#125;;<br><span class="hljs-comment">//发送请求 </span><br><span class="hljs-comment">//把JS对象转成JSON字符串，然后发送给服务器</span><br>xhr.<span class="hljs-title function_">send</span>(JSON.<span class="hljs-title function_">stringify</span>(<span class="hljs-title class_">Data</span>));<br></code></pre></td></tr></table></figure>
+
+<h2 id="Fetch-API详解"><a href="#Fetch-API详解" class="headerlink" title="Fetch API详解"></a>Fetch API详解</h2><p>更简洁的获取发送数据的方式，基于promise</p>
+<table>
+<thead>
+<tr>
+<th align="left">知识点</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>fetch()</code></td>
+<td align="left">返回一个Promise，Promise代表“未来的结果”</td>
+</tr>
+<tr>
+<td align="left"><code>.then()</code></td>
+<td align="left">成功时的回调，第一个拿到response，第二个拿到实际数据</td>
+</tr>
+<tr>
+<td align="left"><code>response.ok</code></td>
+<td align="left">布尔值，true表示状态码200-299（成功）</td>
+</tr>
+<tr>
+<td align="left"><code>response.status</code></td>
+<td align="left">HTTP状态码，和XHR的一样（200,404,500）</td>
+</tr>
+<tr>
+<td align="left"><code>response.json()</code></td>
+<td align="left">把响应体解析成JS对象，返回Promise</td>
+</tr>
+<tr>
+<td align="left"><code>.catch()</code></td>
+<td align="left">捕获所有错误（网络问题 + throw出来的错误）</td>
+</tr>
+</tbody></table>
+<h5 id="基本格式"><a href="#基本格式" class="headerlink" title="基本格式"></a>基本格式</h5><figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs dns">fetch<span class="hljs-punctuation">(</span>url, options<span class="hljs-punctuation">)</span><br>// url: 请求的地址<br>// options: 可选参数。用于配置请求方式<span class="hljs-punctuation">(</span>如 GET、POST<span class="hljs-punctuation">)</span>、请求头<span class="hljs-punctuation">(</span>headers<span class="hljs-punctuation">)</span>、请求体<span class="hljs-punctuation">(</span>body<span class="hljs-punctuation">)</span>等。<br>// <span class="hljs-punctuation">(</span>如果不传 options, 默认就是一个 GET 请求。<span class="hljs-punctuation">)</span><br>// .then<span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span> 是 Promise 的方法。用来接收成功执行之后的返回结果。<br>.then<span class="hljs-punctuation">(</span>response =&gt; response.json<span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span><span class="hljs-punctuation">)</span><br>// 处理响应对象<br>// response 是服务器返回的原始响应对象<span class="hljs-punctuation">(</span>Response 实例<span class="hljs-punctuation">)</span>, 包含状态码、头部、正文等。<br><span class="hljs-punctuation">(</span>不是直接的数据<span class="hljs-punctuation">)</span><br>// response.json<span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span> 是一个异步方法, 用来把返回的 JSON 字符串解析为 JavaScript 对象。<br>.then<span class="hljs-punctuation">(</span>data =&gt; &#123;<br>// 处理响应数据<br>&#125;<span class="hljs-punctuation">)</span><br>.catch<span class="hljs-punctuation">(</span>error =&gt; &#123;<br>// 处理错误<br>&#125;<span class="hljs-punctuation">)</span><span class="hljs-comment">;</span><br>// .catch<span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span> 是 Promise 的异常捕获方法。<br>// 如果请求过程中发生网络错误, 或前面的.then<span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span>中抛出了错误, 这里就会执行。<br>// error 是错误对象, 可以用来打印错误日志、提示用户等<br></code></pre></td></tr></table></figure>
+
+<h5 id="使用步骤-1"><a href="#使用步骤-1" class="headerlink" title="使用步骤"></a>使用步骤</h5><p>&#x2F;&#x2F;GET请求</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-comment">//第1步：获取身份凭证（从本地存储拿token）</span><br>const token = localStorage.getItem(<span class="hljs-string">&#x27;authToken&#x27;</span>);<br><br><span class="hljs-comment">//第2步：发起fetch请求（配置请求方式、请求头）</span><br>fetch(<span class="hljs-string">&#x27;https://api.example.com/protected/data&#x27;</span>, &#123;<br>    <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,<br>    <span class="hljs-attr">headers</span>: &#123;<br>        <span class="hljs-string">&#x27;Authorization&#x27;</span>: <span class="hljs-string">`Bearer <span class="hljs-subst">$&#123;token&#125;</span>`</span>,<br>        <span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span><br>    &#125;<br>&#125;)<br><br><span class="hljs-comment">// 第3步：处理响应对象（判断成功/失败，解析数据）</span><br>.then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> &#123;<br>    <span class="hljs-keyword">if</span> (!response.ok) &#123;<br>        throw <span class="hljs-keyword">new</span> Error(<span class="hljs-string">&#x27;请求失败: &#x27;</span> + response.status);<br>    &#125;<br>    <span class="hljs-keyword">return</span> response.json();<br>&#125;)<br><br><span class="hljs-comment">// 第4步：处理解析后的数据（拿到真正要用的数据）</span><br>.then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;获取到的数据: &#x27;</span>, data);<br>&#125;)<br><br><span class="hljs-comment">//第5步：捕获错误（网络问题 + 手动抛出的错误）</span><br>.<span class="hljs-keyword">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.error(<span class="hljs-string">&#x27;请求出错: &#x27;</span>, error);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>&#x2F;&#x2F;POST请求</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-comment">//第1步：准备要发送的数据</span><br><span class="hljs-keyword">const</span> postData = &#123;<br>    name: <span class="hljs-string">&#x27;Alice&#x27;</span>,<br>    email: <span class="hljs-string">&#x27;alice@example.com&#x27;</span><br>&#125;;<br><br><span class="hljs-comment">//第2步：发起fetch请求</span><br><span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/posts&#x27;</span>, &#123;<br>    method: <span class="hljs-string">&#x27;POST&#x27;</span>,                             <br>    <span class="hljs-comment">// 请求方式改为POST</span><br>    headers: &#123;<br>        <span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span>,    <br>        <span class="hljs-comment">// 告诉服务器发的是JSON</span><br>        <span class="hljs-string">&#x27;Authorization&#x27;</span>: <span class="hljs-string">&#x27;Bearer token&#x27;</span>         <br>        <span class="hljs-comment">// 身份验证（可选）</span><br>    &#125;,<br>    body: JSON.<span class="hljs-title function_">stringify</span>(postData)             <br>    <span class="hljs-comment">// 唯一新增：把数据转成JSON字符串发过去</span><br>&#125;)<br><br><span class="hljs-comment">//第3步：处理响应对象</span><br>.<span class="hljs-title function_">then</span>(response =&gt; &#123;<br>    <span class="hljs-keyword">if</span> (!response.ok) &#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;提交失败&#x27;</span>);<br>    &#125;<br>    <span class="hljs-keyword">return</span> response.<span class="hljs-title function_">json</span>();                      <span class="hljs-comment">// 解析服务器返回的数据</span><br>&#125;)<br><br><span class="hljs-comment">//第4步：处理解析后的数据</span><br>.<span class="hljs-title function_">then</span>(data =&gt; &#123;<br>    console.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;服务器返回数据: &#x27;</span>, data);<br>&#125;)<br><br><span class="hljs-comment">//第5步：捕获错误</span><br>.<span class="hljs-keyword">catch</span>(error =&gt; &#123;<br>    console.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;错误信息: &#x27;</span>, error);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<h2 id="第三方库：Axios"><a href="#第三方库：Axios" class="headerlink" title="第三方库：Axios"></a>第三方库：Axios</h2><p>axios是一个基于Promise的HTTP客户端库，用于发送网络请求。</p>
+<h5 id="引入方式"><a href="#引入方式" class="headerlink" title="引入方式"></a>引入方式</h5><p><code>&lt;script src=&quot;https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js&quot;&gt;&lt;/script&gt;</code></p>
+<h5 id="使用步骤-2"><a href="#使用步骤-2" class="headerlink" title="使用步骤"></a>使用步骤</h5><p>&#x2F;&#x2F;GET请求</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs arcade">const postData = &#123;<br>    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Alice&#x27;</span>,<br>    <span class="hljs-attr">email</span>: <span class="hljs-string">&#x27;alice@example.com&#x27;</span><br>&#125;;<br><br>axios.post(<span class="hljs-string">&#x27;https://api.example.com/posts&#x27;</span>, postData)<br>    .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> &#123;<br>        <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;服务器返回:&#x27;</span>, response.data);<br>    &#125;)<br>    .<span class="hljs-keyword">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> &#123;<br>        <span class="hljs-built_in">console</span>.error(<span class="hljs-string">&#x27;提交失败:&#x27;</span>, error.message);<br>    &#125;);<br></code></pre></td></tr></table></figure>
+
+<p>&#x2F;&#x2F;POST请求</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs arcade">const postData = &#123;<br>    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Alice&#x27;</span>,<br>    <span class="hljs-attr">email</span>: <span class="hljs-string">&#x27;alice@example.com&#x27;</span><br>&#125;;<br><br>axios.post(<span class="hljs-string">&#x27;https://api.example.com/posts&#x27;</span>, postData)<br>    .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> &#123;<br>        <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;服务器返回:&#x27;</span>, response.data);<br>    &#125;)<br>    .<span class="hljs-keyword">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> &#123;<br>        <span class="hljs-built_in">console</span>.error(<span class="hljs-string">&#x27;提交失败:&#x27;</span>, error.message);<br>    &#125;);<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="category-chain-item">学习</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%89%8D%E7%AB%AF/" class="print-no-link">#前端</a>
+      
+        <a href="/tags/HTTP/" class="print-no-link">#HTTP</a>
+      
+        <a href="/tags/AJAX/" class="print-no-link">#AJAX</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>网络请求</div>
+      <div>https://lin00xxx.github.io/2026/10/07/notes/网络请求/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>dokiii</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>October 7, 2026</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/10/07/record/2026-10-07-%E9%9B%A8%E5%A4%A9/" title="2026-10-07 雨天">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">2026-10-07 雨天</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/10/05/record/2026-10-05-%E9%80%9B%E5%85%AC%E5%9B%AD/" title="2026-10-05 逛公园">
+                        <span class="hidden-mobile">2026-10-05 逛公园</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
