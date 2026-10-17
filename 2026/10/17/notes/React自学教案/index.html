@@ -1,0 +1,964 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" href="/img/favicon.jpg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="dokiii">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="代码在d盘react-demo 第一部分 React 基础第 1 课：React 概述、脚手架、JSXReact 是一个前端 JavaScript 库，用于构建用户界面，核心聚焦视图层。 核心思想：组件化开发，页面拆分为独立可复用组件；采用虚拟 DOM，减少真实 DOM 操作，提升渲染性能。 语法：使用 JSX，在 JS 中写类 HTML 标签，最终编译为 JS。 数据特点：单向数据流，数据自上">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React知识">
+<meta property="og:url" content="https://lin00xxx.github.io/2026/10/17/notes/React%E8%87%AA%E5%AD%A6%E6%95%99%E6%A1%88/index.html">
+<meta property="og:site_name" content="dokiii">
+<meta property="og:description" content="代码在d盘react-demo 第一部分 React 基础第 1 课：React 概述、脚手架、JSXReact 是一个前端 JavaScript 库，用于构建用户界面，核心聚焦视图层。 核心思想：组件化开发，页面拆分为独立可复用组件；采用虚拟 DOM，减少真实 DOM 操作，提升渲染性能。 语法：使用 JSX，在 JS 中写类 HTML 标签，最终编译为 JS。 数据特点：单向数据流，数据自上">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-10-17T09:00:00.000Z">
+<meta property="article:modified_time" content="2026-10-17T10:57:56.302Z">
+<meta property="article:author" content="dokiii">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>React知识 - dokiii</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lin00xxx.github.io","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70px;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>Home</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>Archives</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>Categories</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>Tags</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>About</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>Search</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="Light"
+               data-label-dark="Dark">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">Dark</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">React知识</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <hr>
+<p><code>代码在d盘react-demo</code></p>
+<h1 id="第一部分-React-基础"><a href="#第一部分-React-基础" class="headerlink" title="第一部分 React 基础"></a>第一部分 React 基础</h1><h2 id="第-1-课：React-概述、脚手架、JSX"><a href="#第-1-课：React-概述、脚手架、JSX" class="headerlink" title="第 1 课：React 概述、脚手架、JSX"></a>第 1 课：React 概述、脚手架、JSX</h2><h3 id="React-是一个前端-JavaScript-库，用于构建用户界面，核心聚焦视图层。"><a href="#React-是一个前端-JavaScript-库，用于构建用户界面，核心聚焦视图层。" class="headerlink" title="React 是一个前端 JavaScript 库，用于构建用户界面，核心聚焦视图层。"></a>React 是一个前端 JavaScript 库，用于构建用户界面，核心聚焦视图层。</h3><ol>
+<li><strong>核心思想</strong>：组件化开发，页面拆分为独立可复用组件；采用<strong>虚拟 DOM</strong>，减少真实 DOM 操作，提升渲染性能。</li>
+<li><strong>语法</strong>：使用 JSX，在 JS 中写类 HTML 标签，最终编译为 JS。</li>
+<li><strong>数据特点</strong>：单向数据流，数据自上向下传递；状态<code>state</code>驱动视图，状态改变触发页面更新。</li>
+<li><strong>版本</strong>：React16 及以前以类组件为主；React18 主推<strong>函数组件 + Hooks</strong>（useState、useEffect 等）。</li>
+<li><strong>定位</strong>：只负责 UI 渲染，搭配路由 React Route等构成完整前端项目。</li>
+</ol>
+<h3 id="①-项目结构是怎么搭起来的（脚手架）"><a href="#①-项目结构是怎么搭起来的（脚手架）" class="headerlink" title="① 项目结构是怎么搭起来的（脚手架）"></a>① 项目结构是怎么搭起来的（脚手架）</h3><p>**<code>2(1)basic.jsx</code> **：</p>
+<ol>
+<li><strong>前置条件</strong>：先装好 Node.js。</li>
+<li><strong>建项目</strong>：选一个文件夹 → 打开终端 → <code>npm init vite@latest</code> → 给项目命名 → 框架选 react → 语言选 JS+React。</li>
+<li><strong>目录作用</strong>：<ul>
+<li><code>public</code>：静态资源，会原样提供给浏览器；</li>
+<li><code>src</code>：源代码文件夹，是核心代码的存放地，各种组件都在这里；</li>
+<li><code>index.html</code>：入口文件，运行时提供给浏览器；</li>
+<li><code>package.json</code>：配置文件，记录装了什么库（依赖项）。</li>
+</ul>
+</li>
+<li>删了 node_modules 可以用 <code>npm install</code> 一键自动生成。</li>
+</ol>
+<h3 id="②-程序是怎么跑起来的（入口-→-根组件）"><a href="#②-程序是怎么跑起来的（入口-→-根组件）" class="headerlink" title="② 程序是怎么跑起来的（入口 → 根组件）"></a>② 程序是怎么跑起来的（入口 → 根组件）</h3><p><strong><code>main.jsx</code></strong>（此时 <code>App.jsx</code> 注释全关，先只显示根标题）：</p>
+<ol>
+<li>打开 <code>index.html</code> → 里面有 <code>&lt;div id=&quot;root&quot;&gt;</code> 和 <code>&lt;script&gt;</code> 引入 <code>main.jsx</code>。</li>
+<li><code>main.jsx</code> 里 <code>createRoot(document.getElementById(&#39;root&#39;)).render(&lt;App/&gt;)</code>：把 <code>&lt;App/&gt;</code> 挂到 root 上。</li>
+<li><code>StrictMode</code> 的作用：开发环境帮忙检查潜在问题。</li>
+<li><strong>收尾一句</strong>：入口拿到 App 根组件 → 渲染 → 显示页面上的各种组件。</li>
+</ol>
+<h3 id="③-JSX-是什么、有哪些规则"><a href="#③-JSX-是什么、有哪些规则" class="headerlink" title="③ JSX 是什么、有哪些规则"></a>③ JSX 是什么、有哪些规则</h3><ol>
+<li><strong>JSX 是语法糖</strong>：最终会被转成 <code>createElement</code> 调用。</li>
+<li><strong>表达式</strong>：<code>&#123;&#125;</code> 大括号里遇到就当 JS 执行，可嵌入变量和表达式（<code>&lt;h1&gt;&#123;count&#125;&lt;/h1&gt;</code>）。</li>
+<li><strong>组件命名</strong>：React 组件必须首字母大写；用 <code>export</code> 直接导出时不能随意改名。</li>
+<li><strong>单一父元素</strong>：每个组件只能返回一个元素，所有元素要包在一个封闭父容器里；可用 <code>&lt;&gt;&lt;/&gt;</code> 空标签当包裹组件。</li>
+<li><strong>标签闭合</strong>：<code>input</code>、<code>br</code> 这类 HTML 里不用闭合的标签，在 JSX 里要自闭合 <code>&lt;input /&gt;</code>、<code>&lt;br /&gt;</code>。</li>
+<li><strong>属性名差异</strong>：<code>class</code> 要写成 <code>className</code>，<code>for</code> 要写成 <code>htmlFor</code>。</li>
+<li><strong>收尾一句</strong>：JSX 就是「能在 JS 里写 HTML 模板的语法」，规则记四件事——表达式用 <code>&#123;&#125;</code>、组件大写、单父元素、<code>className</code>。</li>
+</ol>
+<hr>
+<h2 id="第-2-课：组件、事件处理、this-指向、表单处理"><a href="#第-2-课：组件、事件处理、this-指向、表单处理" class="headerlink" title="第 2 课：组件、事件处理、this 指向、表单处理"></a>第 2 课：组件、事件处理、this 指向、表单处理</h2><blockquote>
+<p>理解”组件” → 事件怎么绑定 → 事件函数怎么传给子组件 。</p>
+</blockquote>
+<h3 id="①-组件基础（state-让组件有交互性）"><a href="#①-组件基础（state-让组件有交互性）" class="headerlink" title="① 组件基础（state 让组件有交互性）"></a>① 组件基础（state 让组件有交互性）</h3><ol>
+<li><p>组件就是返回 JSX 的函数&#x2F;类，可复用、可传参，父传子。</p>
+</li>
+<li><p>用 <code>useState(0)</code> 声明状态 <code>count</code>，<code>setCount</code> 更新它 → 页面跟着变。</p>
+</li>
+<li><p>state 是让 React 组件有交互性的关键。</p>
+</li>
+<li><p>导出方式：</p>
+<p><strong>默认导出 export default</strong> 一个文件最多 1 个；导入不加<code>&#123;&#125;</code>，导入名字可自定义。常用于文件只导出<strong>一个主组件</strong>。</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>)&#123;&#125;<br><span class="hljs-keyword">import</span> <span class="hljs-title class_">App</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./App&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p>​	<strong>命名（具名）导出 export</strong> 一个文件可多个；导入必须加<code>&#123;&#125;</code>，<strong>名字必须和导出一致</strong>。适合一个文件导出多个组件 &#x2F; 变量，支持 tree-shaking。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Button</span>(<span class="hljs-params"></span>)&#123;&#125;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Button</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./Button&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="②-事件处理（怎么给元素绑事件）"><a href="#②-事件处理（怎么给元素绑事件）" class="headerlink" title="② 事件处理（怎么给元素绑事件）"></a>② 事件处理（怎么给元素绑事件）</h3><p>​	<strong><code>2(2)CustomButton.jsx</code></strong>：</p>
+<ol>
+<li>事件名用<strong>驼峰命名</strong>：<code>onClick</code>、<code>onChange</code>（不是 onclick）。</li>
+<li>定义事件发生时执行的函数 <code>handleClick</code>，里面写逻辑。</li>
+<li>三种写法：绑定已定义函数 <code>onClick=&#123;handleClick&#125;</code>、内联箭头 <code>onClick=&#123;()=&gt;alert(&quot;!&quot;)&#125;</code>、带 event 参数 <code>(e)=&gt;&#123;...&#125;</code>。</li>
+<li><strong>收尾一句</strong>：React 事件就是驼峰事件名 + 一个回调函数。</li>
+</ol>
+<h3 id="③-事件函数怎么传给子组件（父子协作）"><a href="#③-事件函数怎么传给子组件（父子协作）" class="headerlink" title="③ 事件函数怎么传给子组件（父子协作）"></a>③ 事件函数怎么传给子组件（父子协作）</h3><p>​	<code>2(2)ActionButton.jsx</code> → <code>2(2)Contact.jsx</code> → <code>2(2)Newletter.jsx</code>：</p>
+<ol>
+<li>看 <code>ActionButton</code>：它是一个<strong>通用子组件</strong>，接收 <code>&#123; text, onClick &#125;</code>，渲染一个按钮，点击就调用 <code>onClick</code>。</li>
+<li>看 <code>Contact</code>：父组件自己定义 <code>handleSendMessage</code>（弹窗提示），把 <code>onClick=&#123;handleSendMessage&#125;</code> 作为 props 传给 <code>ActionButton</code>。</li>
+<li>看 <code>Newletter</code>：同样结构，<code>handleSubscribe</code> 传给子组件。</li>
+<li>每个子组件是独立的；React 传数据<strong>只能父传子</strong>；子组件想改父组件的数据，就要<strong>把事件处理函数作为 props 传进来</strong>。</li>
+<li><strong>收尾一句</strong>：子组件负责”点”，父组件负责”处理”——靠 props 传函数实现。</li>
+</ol>
+<hr>
+<h2 id="第-3-课：组件通讯（props-与-props-深入、Context）"><a href="#第-3-课：组件通讯（props-与-props-深入、Context）" class="headerlink" title="第 3 课：组件通讯（props 与 props 深入、Context）"></a>第 3 课：组件通讯（props 与 props 深入、Context）</h2><blockquote>
+<p>props 基础传值 → props 深入（解构&#x2F;默认值&#x2F;展开&#x2F;children）→ Context 解决层层传递。</p>
+</blockquote>
+<h3 id="①props-单向数据流"><a href="#①props-单向数据流" class="headerlink" title="①props 单向数据流"></a>①props 单向数据流</h3><ol>
+<li><code>App.jsx</code> 是父组件，它同时使用了 <code>&lt;Welcome name=&quot;alice&quot;/&gt;</code> 和 <code>&lt;UserInfo name=&quot;jhon&quot; email=&quot;jhon@gmail.com&quot;/&gt;</code>。</li>
+<li><code>Welcome</code>（子）：接收 <code>name</code> 这个 props，函数里 <code>&#123; name = &quot;默认&quot; &#125;</code> 解构 + 设默认值，没传就用 “默认”。</li>
+<li><code>UserInfo</code>（子）：接收 <code>name/age/city/email</code> 四个 props，都带默认值 <code>&quot;暂无&quot;</code>，渲染到页面。</li>
+</ol>
+<h3 id="②-props-深入"><a href="#②-props-深入" class="headerlink" title="② props 深入"></a>② props 深入</h3><p><strong>A. 组件通信 + <code>...rest</code> 批量转发 → <code>2(3)UserCard.jsx</code> + <code>2(3)UserInfo.jsx</code></strong></p>
+<ol>
+<li>父子组件通信：<code>UserCard</code> 是父组件（它 import 并在内部使用 <code>&lt;UserInfo/&gt;</code>），<code>UserInfo</code> 是子组件。</li>
+<li>技巧是 <code>...rest</code> 批量转发。</li>
+</ol>
+<p><strong>B. children 组合布局 → <code>2(3)CardWrapper.jsx</code></strong></p>
+<ol>
+<li>组件可用 <code>&#123;children&#125;</code> 把传进来的子元素原样渲染。</li>
+<li>用途：做”包一层卡片、里面放任意内容”的<strong>组合式布局</strong>（容器组件）。</li>
+<li><strong>收尾一句</strong>：<code>children</code> 就是组件的插槽，谁都能往里面塞东西。</li>
+</ol>
+<p><strong>合起来总结</strong>：props 深入两个技巧——<code>...rest</code> 批量转发（UserCard&#x2F;UserInfo）、<code>children</code> 插槽式组合（CardWrapper）。</p>
+<h3 id="③-Context（解决-props-drilling）"><a href="#③-Context（解决-props-drilling）" class="headerlink" title="③ Context（解决 props drilling）"></a>③ Context（解决 props drilling）</h3><p><strong><code>2(3)ContextDemo.jsx</code> + <code>2(3)Child.jsx</code> + <code>2(3)GrandChild.jsx</code></strong>：</p>
+<ol>
+<li><strong>痛点（props drilling）</strong>：看 <code>Child</code> → 它只负责往下一层传，里面嵌了 <code>GrandChild</code>。如果数据要从最顶层传到 <code>GrandChild</code>，中间 <code>Child</code> 明明不需要这个数据也得帮着传，这就是 props drilling。</li>
+<li><strong>Context 三步</strong>：<ul>
+<li><code>ContextDemo.jsx</code>：<code>createContext(&#39;light&#39;)</code> 创建上下文，自带默认值 <code>&#39;light&#39;</code>；</li>
+<li><code>App.jsx</code>：用 <code>&lt;ContextDemo.Provider value=&#123;theme&#125;&gt;</code> 在高层广播值，谁都能订阅；</li>
+<li><code>GrandChild.jsx</code>：<code>useContext(ContextDemo)</code> 直接拿到主题值，<strong>不用经过 Child</strong>。</li>
+</ul>
+</li>
+<li><strong>收尾一句</strong>：Context 就是在高层广播一个值，深层组件直接订阅，省去中间层的层层传参。</li>
+</ol>
+<hr>
+<h1 id="第二部分-React-进阶"><a href="#第二部分-React-进阶" class="headerlink" title="第二部分 React 进阶"></a>第二部分 React 进阶</h1><h2 id="第-4-课：组件生命周期"><a href="#第-4-课：组件生命周期" class="headerlink" title="第 4 课：组件生命周期"></a>第 4 课：组件生命周期</h2><h3 id="①-生命周期的三个阶段（概念）"><a href="#①-生命周期的三个阶段（概念）" class="headerlink" title="① 生命周期的三个阶段（概念）"></a>① 生命周期的三个阶段（概念）</h3><ol>
+<li><strong>挂载</strong>：组件第一次渲染到屏幕上。</li>
+<li><strong>更新</strong>：组件的 props 或 state 发生变化，会重新渲染。</li>
+<li><strong>卸载</strong>：组件从屏幕上移除。</li>
+</ol>
+<h3 id="②-用代码感受”更新”这个阶段"><a href="#②-用代码感受”更新”这个阶段" class="headerlink" title="② 用代码感受”更新”这个阶段"></a>② 用代码感受”更新”这个阶段</h3><p><code>3(1)UserDashBoard.jsx</code>：</p>
+<ol>
+<li>两个 state：<code>isPremium</code>（是否会员）、<code>credits</code>（积分）。</li>
+<li>点 “Upgrade” → <code>setIsPremium(true)</code> → 组件<strong>重新渲染</strong>，从”升级界面”变成”积分界面”——这就是更新阶段。</li>
+<li>点 “Add Credit” → <code>setCredit(credits+1)</code> → 又一次更新。</li>
+</ol>
+<hr>
+<h2 id="第-5-课：组件复用（render-props-与高阶组件）"><a href="#第-5-课：组件复用（render-props-与高阶组件）" class="headerlink" title="第 5 课：组件复用（render props 与高阶组件）"></a>第 5 课：组件复用（render props 与高阶组件）</h2><blockquote>
+<p><strong>render props → 高阶组件 → 对比两种方式</strong>。</p>
+</blockquote>
+<h3 id="①-render-props-模式"><a href="#①-render-props-模式" class="headerlink" title="① render props 模式"></a>① render props 模式</h3><p>** <code>3(2)Box.jsx</code>**：</p>
+<ol>
+<li><code>Box</code> 组件接收一个 <code>render</code> 函数作为 props。</li>
+<li>组件内部有数据 <code>const name = &quot;Tom&quot;</code>，调用 <code>render(name)</code>，把 <code>name</code> 作为参数传出去。</li>
+<li>需要的话可复用 Box，同一套数据&#x2F;逻辑用不同函数展示。</li>
+<li><strong>收尾一句</strong>：render props &#x3D; 传一个”怎么渲染”的函数进去，数据在组件里、样式在调用方。</li>
+</ol>
+<h3 id="②-高阶组件-HOC"><a href="#②-高阶组件-HOC" class="headerlink" title="② 高阶组件 HOC"></a>② 高阶组件 HOC</h3><p>** <code>hoc/withLog.jsx</code> + <code>3(2)User.jsx</code> + <code>App.jsx</code> **：</p>
+<ol>
+<li><code>User.jsx</code> 是一个普通组件，只渲染 <code>&lt;h1&gt;我是user组件&lt;/h1&gt;</code>。</li>
+<li><code>withLog.jsx</code>：<strong>接受一个组件、返回一个新组件</strong>的函数。返回的新组件在被使用时打印 <code>console.log(&quot;组件被使用了&quot;)</code>，再渲染原 <code>&lt;Component/&gt;</code>。</li>
+<li><code>App.jsx</code> 里 <code>const UserWithLog = withLog(User)</code> → 用 <code>&lt;UserWithLog/&gt;</code>，就得到一个”带日志功能”的 User。</li>
+<li><strong>收尾一句</strong>：HOC 就是把普通组件包一层，变成更高级、带额外功能的组件。</li>
+</ol>
+<h3 id="③对比总结"><a href="#③对比总结" class="headerlink" title="③对比总结"></a>③对比总结</h3><table>
+<thead>
+<tr>
+<th></th>
+<th>render props</th>
+<th>高阶组件 HOC</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>思路</td>
+<td>把”渲染函数”当 props 传进组件</td>
+<td>把”组件”当参数，返回新组件</td>
+</tr>
+<tr>
+<td>谁控制逻辑</td>
+<td>组件内部有逻辑&#x2F;数据</td>
+<td>外层包装函数加逻辑</td>
+</tr>
+<tr>
+<td>记忆点</td>
+<td><strong>传函数进去</strong></td>
+<td><strong>包组件出来</strong></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="第-6-课：React-路由-axios"><a href="#第-6-课：React-路由-axios" class="headerlink" title="第 6 课：React 路由 + axios"></a>第 6 课：React 路由 + axios</h2><blockquote>
+<p><strong>整体路由结构 → Link&#x2F;Route 分工 → 编程式航 → 动态参数 → 嵌套路由 → 404 → axios</strong>。</p>
+</blockquote>
+<h3 id="①路由整体配置"><a href="#①路由整体配置" class="headerlink" title="①路由整体配置"></a>①路由整体配置</h3><p><strong><code>App.jsx</code> 的路由部分</strong>：</p>
+<ol>
+<li><code>BrowserRouter</code> 包在最外面，启用浏览器路由。</li>
+<li><code>&lt;nav&gt;</code> 里 <code>Link</code> 定义导航链接（首页 &#x2F; 关于我们 &#x2F; 用户1）。</li>
+<li><code>&lt;Routes&gt;</code> 里 <code>&lt;Route path=&quot;...&quot; element=&#123;...&#125;&gt;</code> 配置 URL 对应的页面。</li>
+<li>最后一行 <code>&lt;Route path=&quot;*&quot; element=&#123;&lt;NotFound/&gt;&#125;/&gt;</code> 是通配，匹配不到就进 404。</li>
+<li><strong>收尾一句</strong>：路由 &#x3D; 一张「URL ↔ 页面」的映射表，BrowserRouter 是总开关。</li>
+</ol>
+<h3 id="③-编程式导航（useNavigate）"><a href="#③-编程式导航（useNavigate）" class="headerlink" title="③ 编程式导航（useNavigate）"></a>③ 编程式导航（useNavigate）</h3><p><strong><code>pages/About.jsx</code></strong>：</p>
+<ol>
+<li><code>import &#123; useNavigate &#125; from &quot;react-router-dom&quot;</code>。</li>
+<li><code>const navigate = useNavigate()</code> 拿到导航函数。</li>
+<li>按钮 <code>onClick=&#123;() =&gt; navigate(-1)&#125;</code> → 返回上一页（-1 &#x3D; 后退一步）。</li>
+<li><strong>收尾一句</strong>：不想靠点击链接、想用代码&#x2F;按钮跳转时，就用 useNavigate。</li>
+</ol>
+<h3 id="④-动态路由参数（useParams）"><a href="#④-动态路由参数（useParams）" class="headerlink" title="④ 动态路由参数（useParams）"></a>④ 动态路由参数（useParams）</h3><p><strong><code>pages/User3.jsx</code></strong>：</p>
+<ol>
+<li>路由里 <code>path=&quot;/user/:id&quot;</code>，<code>:id</code> 是动态参数。</li>
+<li><code>const Params = useParams()</code> → 拿到 <code>Params.id</code>，页面上显示”用户id:xxx”。</li>
+<li><strong>实际应用</strong>：同一个页面组件，根据 URL 里不同的 id，去请求不同的数据、展示不同内容（注释里写了）。</li>
+<li><strong>收尾一句</strong>：<code>:参数</code> 是占位符，useParams 把它取出来，一个组件就能服务无数个 id。</li>
+</ol>
+<h3 id="⑤-嵌套路由-Outlet"><a href="#⑤-嵌套路由-Outlet" class="headerlink" title="⑤ 嵌套路由 + Outlet"></a>⑤ 嵌套路由 + Outlet</h3><p><strong>看 <code>pages/User3.jsx</code> 的结构 + <code>pages/Profile.jsx</code> + <code>pages/Orders.jsx</code></strong>：</p>
+<ol>
+<li><code>App.jsx</code> 里 <code>&lt;Route path=&quot;user/:id&quot;&gt;</code> 内嵌两个子路由 <code>profile</code> 和 <code>orders</code>。</li>
+<li><code>User3.jsx</code> 里 <code>Link to=&quot;profile&quot;</code> &#x2F; <code>Link to=&quot;orders&quot;</code> 切换，中间放 <code>&lt;Outlet/&gt;</code>。</li>
+<li><code>&lt;Outlet/&gt;</code> 是子页面的”插槽”：父页面（用户信息 + 导航）保留，子页面（Profile &#x2F; Orders）在 Outlet 位置替换。</li>
+<li><strong>收尾一句</strong>：嵌套路由让父页面当”外壳”，Outlet 决定里面换哪块子页面。</li>
+</ol>
+<h3 id="⑥-404-兜底"><a href="#⑥-404-兜底" class="headerlink" title="⑥ 404 兜底"></a>⑥ 404 兜底</h3><p>** <code>pages/NotFound.jsx</code>**：</p>
+<ol>
+<li>返回 <code>&lt;h1&gt;404 页面不存在&lt;/h1&gt;</code>。</li>
+<li>配合 <code>App.jsx</code> 里 <code>path=&quot;*&quot;</code>，所有匹配不到的路由都进这里。</li>
+<li><strong>收尾一句</strong>：<code>*</code> 是万能匹配，兜住所有未知地址。</li>
+</ol>
+<h3 id="⑦-axios-向后端发请求"><a href="#⑦-axios-向后端发请求" class="headerlink" title="⑦ axios 向后端发请求"></a>⑦ axios 向后端发请求</h3><ol>
+<li><p><strong>安装</strong>：<code>npm install axios</code>。</p>
+</li>
+<li><p><strong>引入</strong>：<code>import axios from &#39;axios&#39;</code>。</p>
+</li>
+<li><p><strong>发请求</strong>： <code>axios.get(\</code><a target="_blank" rel="noopener" href="https://jsonplaceholder.typicode.com/users/$%7BParams.id%7D/%60)%60">https://jsonplaceholder.typicode.com/users/${Params.id}\`)`</a> 拿用户数据，&#96;</p>
+<p>res.data取返回内容。</p>
+</li>
+<li><p>增删改对应方法：<code>axios.post()</code> 发送、<code>axios.put()</code> 修改、<code>axios.delete()</code> 删除。</p>
+</li>
+<li><p><strong>收尾一句</strong>：axios 就是向后端发 HTTP 请求的工具，get 拿数据、post&#x2F;put&#x2F;delete 改数据。</p>
+</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="category-chain-item">学习</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%89%8D%E7%AB%AF/" class="print-no-link">#前端</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>React知识</div>
+      <div>https://lin00xxx.github.io/2026/10/17/notes/React自学教案/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>dokiii</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>October 17, 2026</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/10/16/article/%E6%A2%A6/" title="梦">
+                        <span class="hidden-mobile">梦</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
