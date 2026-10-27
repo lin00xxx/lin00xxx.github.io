@@ -1,0 +1,1101 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" href="/img/favicon.jpg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="dokiii">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、查找算法基础1. 查找的定义查找是在数据集合中寻找特定元素的过程。根据数据结构和数据特性的不同，有多种查找算法可供选择。 2. 查找算法分类 静态查找：数据集合在查找过程中不发生变化 动态查找：数据集合在查找过程中可能发生变化 内部查找：数据全部存放在内存中 外部查找：数据部分或全部存放在外存中  二、主要查找算法详解1. 线性查找（顺序查找） 原理：从数据的一端开始，逐个元素进行比较，直到找">
+<meta property="og:type" content="article">
+<meta property="og:title" content="查找专题">
+<meta property="og:url" content="https://lin00xxx.github.io/2026/10/15/notes/%E6%9F%A5%E6%89%BE/index.html">
+<meta property="og:site_name" content="dokiii">
+<meta property="og:description" content="一、查找算法基础1. 查找的定义查找是在数据集合中寻找特定元素的过程。根据数据结构和数据特性的不同，有多种查找算法可供选择。 2. 查找算法分类 静态查找：数据集合在查找过程中不发生变化 动态查找：数据集合在查找过程中可能发生变化 内部查找：数据全部存放在内存中 外部查找：数据部分或全部存放在外存中  二、主要查找算法详解1. 线性查找（顺序查找） 原理：从数据的一端开始，逐个元素进行比较，直到找">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-10-15T06:39:00.000Z">
+<meta property="article:modified_time" content="2026-10-27T11:40:40.130Z">
+<meta property="article:author" content="dokiii">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>查找专题 - dokiii</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lin00xxx.github.io","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70px;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>Home</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>Archives</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>Categories</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>Tags</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>About</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>Search</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="Light"
+               data-label-dark="Dark">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">Dark</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">查找专题</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="一、查找算法基础"><a href="#一、查找算法基础" class="headerlink" title="一、查找算法基础"></a>一、查找算法基础</h2><h3 id="1-查找的定义"><a href="#1-查找的定义" class="headerlink" title="1. 查找的定义"></a>1. 查找的定义</h3><p>查找是在数据集合中寻找特定元素的过程。根据数据结构和数据特性的不同，有多种查找算法可供选择。</p>
+<h3 id="2-查找算法分类"><a href="#2-查找算法分类" class="headerlink" title="2. 查找算法分类"></a>2. 查找算法分类</h3><ul>
+<li><strong>静态查找</strong>：数据集合在查找过程中不发生变化</li>
+<li><strong>动态查找</strong>：数据集合在查找过程中可能发生变化</li>
+<li><strong>内部查找</strong>：数据全部存放在内存中</li>
+<li><strong>外部查找</strong>：数据部分或全部存放在外存中</li>
+</ul>
+<h2 id="二、主要查找算法详解"><a href="#二、主要查找算法详解" class="headerlink" title="二、主要查找算法详解"></a>二、主要查找算法详解</h2><h3 id="1-线性查找（顺序查找）"><a href="#1-线性查找（顺序查找）" class="headerlink" title="1. 线性查找（顺序查找）"></a>1. 线性查找（顺序查找）</h3><ul>
+<li><strong>原理</strong>：从数据的一端开始，逐个元素进行比较，直到找到目标元素或遍历完整个集合。</li>
+<li><strong>时间复杂度</strong>：<ul>
+<li>最好情况：O(1)</li>
+<li>最坏情况：O(n)</li>
+<li>平均情况：O(n)</li>
+</ul>
+</li>
+<li><strong>空间复杂度</strong>：O(1)</li>
+<li><strong>优点</strong>：<ul>
+<li>实现简单</li>
+<li>不需要数据有序</li>
+<li>适用于小规模数据</li>
+</ul>
+</li>
+<li><strong>缺点</strong>：<ul>
+<li>效率低</li>
+<li>不适合大规模数据</li>
+</ul>
+</li>
+<li><strong>适用场景</strong>：<ul>
+<li>无序小规模数据</li>
+<li>数据量不大或查找不频繁的场景</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-二分查找"><a href="#2-二分查找" class="headerlink" title="2. 二分查找"></a>2. 二分查找</h3><ul>
+<li><strong>原理</strong>：在有序数组中，通过不断将搜索区间减半来快速定位目标。</li>
+<li><strong>时间复杂度</strong>：<ul>
+<li>最好情况：O(1)</li>
+<li>最坏情况：O(log n)</li>
+<li>平均情况：O(log n)</li>
+</ul>
+</li>
+<li><strong>空间复杂度</strong>：O(1)</li>
+<li><strong>优点</strong>：<ul>
+<li>查找效率高</li>
+<li>实现相对简单</li>
+</ul>
+</li>
+<li><strong>缺点</strong>：<ul>
+<li>要求数据有序</li>
+<li>插入和删除操作效率低</li>
+</ul>
+</li>
+<li><strong>适用场景</strong>：<ul>
+<li>有序数组</li>
+<li>查找频繁但插入删除较少的场景</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-哈希查找"><a href="#3-哈希查找" class="headerlink" title="3. 哈希查找"></a>3. 哈希查找</h3><ul>
+<li><strong>原理</strong>：通过哈希函数将关键字映射到数组中的位置，实现快速查找。</li>
+<li><strong>时间复杂度</strong>：<ul>
+<li>最好情况：O(1)</li>
+<li>平均情况：O(1)</li>
+<li>最坏情况：O(n)</li>
+</ul>
+</li>
+<li><strong>空间复杂度</strong>：O(n)</li>
+<li><strong>优点</strong>：<ul>
+<li>查找效率极高</li>
+<li>插入和删除操作也很快</li>
+</ul>
+</li>
+<li><strong>缺点</strong>：<ul>
+<li>需要额外空间</li>
+<li>可能存在哈希冲突</li>
+<li>不适合范围查找</li>
+</ul>
+</li>
+<li><strong>适用场景</strong>：<ul>
+<li>需要频繁查找的场景</li>
+<li>关键字范围较大的场景</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-双指针查找"><a href="#4-双指针查找" class="headerlink" title="4. 双指针查找"></a>4. 双指针查找</h3><ul>
+<li><strong>原理</strong>：使用两个或多个指针在数据结构中移动，根据特定条件进行查找。</li>
+<li><strong>时间复杂度</strong>：通常O(n)</li>
+<li><strong>空间复杂度</strong>：O(1)</li>
+<li><strong>优点</strong>：<ul>
+<li>空间效率高</li>
+<li>可以解决特定问题</li>
+</ul>
+</li>
+<li><strong>缺点</strong>：<ul>
+<li>适用场景有限</li>
+<li>需要特定条件</li>
+</ul>
+</li>
+<li><strong>适用场景</strong>：<ul>
+<li>有序数组或链表</li>
+<li>需要查找特定组合的问题</li>
+</ul>
+</li>
+</ul>
+<h2 id="三、题目应用详解"><a href="#三、题目应用详解" class="headerlink" title="三、题目应用详解"></a>三、题目应用详解</h2><h2 id="1-字典翻译"><a href="#1-字典翻译" class="headerlink" title="1. 字典翻译"></a>1. 字典翻译</h2><h3 id="1-1-题目概述"><a href="#1-1-题目概述" class="headerlink" title="1.1 题目概述"></a>1.1 题目概述</h3><p>将外文方言翻译成英语，查不到的词输出”eh”</p>
+<h3 id="1-2-关键知识点与代码对应"><a href="#1-2-关键知识点与代码对应" class="headerlink" title="1.2 关键知识点与代码对应"></a>1.2 关键知识点与代码对应</h3><h4 id="1-2-1-输入处理：按行读取与空行处理"><a href="#1-2-1-输入处理：按行读取与空行处理" class="headerlink" title="1.2.1 输入处理：按行读取与空行处理"></a>1.2.1 输入处理：按行读取与空行处理</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">char</span> line[<span class="hljs-number">50</span>];<br><span class="hljs-type">int</span> dict_count = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">while</span> (fgets(line, <span class="hljs-keyword">sizeof</span>(line), <span class="hljs-built_in">stdin</span>)) &#123;<br>    <span class="hljs-keyword">if</span> (line[<span class="hljs-number">0</span>] == <span class="hljs-string">&#x27;\n&#x27;</span>) <span class="hljs-keyword">break</span>;  <span class="hljs-comment">// 检测空行</span><br>    <span class="hljs-built_in">sscanf</span>(line, <span class="hljs-string">&quot;%s %s&quot;</span>, eng[dict_count], dialect[dict_count]);<br>    dict_count++;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>知识点</strong>：</p>
+<ul>
+<li>使用<code>fgets</code>按行读取输入</li>
+<li>通过检查首字符是否为换行符来识别空行</li>
+<li>使用<code>sscanf</code>解析每行的两个单词</li>
+</ul>
+<h4 id="1-2-2-线性查找实现"><a href="#1-2-2-线性查找实现" class="headerlink" title="1.2.2 线性查找实现"></a>1.2.2 线性查找实现</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">char</span> word[<span class="hljs-number">20</span>];<br><span class="hljs-keyword">while</span> (<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>, word) != EOF) &#123;<br>    <span class="hljs-type">int</span> found = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; dict_count; i++) &#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">strcmp</span>(dialect[i], word) == <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s\n&quot;</span>, eng[i]);<br>            found = <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">break</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">if</span> (!found) &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;eh\n&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>知识点</strong>：</p>
+<ul>
+<li>遍历所有元素进行查找</li>
+<li>使用<code>strcmp</code>比较字符串</li>
+<li>使用<code>break</code>提前终止查找</li>
+<li>使用标志变量<code>found</code>记录查找结果</li>
+</ul>
+<h4 id="1-2-3-哈希查找优化（C-）"><a href="#1-2-3-哈希查找优化（C-）" class="headerlink" title="1.2.3 哈希查找优化（C++）"></a>1.2.3 哈希查找优化（C++）</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs cpp">std::unordered_map&lt;std::string, std::string&gt; dict;<br>std::string word1, word2;<br><span class="hljs-keyword">while</span> (std::cin &gt;&gt; word1 &gt;&gt; word2) &#123;<br>    dict[word2] = word1;<br>&#125;<br>std::string word;<br><span class="hljs-keyword">while</span> (std::cin &gt;&gt; word) &#123;<br>    <span class="hljs-keyword">if</span> (dict.<span class="hljs-built_in">find</span>(word) != dict.<span class="hljs-built_in">end</span>()) &#123;<br>        std::cout &lt;&lt; dict[word] &lt;&lt; std::endl;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;eh&quot;</span> &lt;&lt; std::endl;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>知识点</strong>：</p>
+<ul>
+<li>使用<code>unordered_map</code>实现哈希表</li>
+<li>哈希查找的时间复杂度为O(1)</li>
+<li>需要额外的空间存储哈希表</li>
+</ul>
+<h3 id="1-3-算法选择与优化"><a href="#1-3-算法选择与优化" class="headerlink" title="1.3 算法选择与优化"></a>1.3 算法选择与优化</h3><ul>
+<li><strong>初始方案</strong>：线性查找，时间复杂度O(n)</li>
+<li><strong>优化方案</strong>：哈希查找，时间复杂度O(1)</li>
+<li><strong>优化思路</strong>：用空间换时间，适合大规模数据</li>
+</ul>
+<h2 id="2-半素数判断"><a href="#2-半素数判断" class="headerlink" title="2. 半素数判断"></a>2. 半素数判断</h2><h3 id="2-1-题目概述"><a href="#2-1-题目概述" class="headerlink" title="2.1 题目概述"></a>2.1 题目概述</h3><p>判断一个数是否可以分解为两个素数的乘积</p>
+<h3 id="2-2-关键知识点与代码对应"><a href="#2-2-关键知识点与代码对应" class="headerlink" title="2.2 关键知识点与代码对应"></a>2.2 关键知识点与代码对应</h3><h4 id="2-2-1-埃氏筛法"><a href="#2-2-1-埃氏筛法" class="headerlink" title="2.2.1 埃氏筛法"></a>2.2.1 埃氏筛法</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> MAX_N 1000001</span><br><span class="hljs-type">int</span> is_prime[MAX_N];<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">sieve</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; MAX_N; i++) &#123;<br>        is_prime[i] = <span class="hljs-number">1</span>;<br>    &#125;<br>    is_prime[<span class="hljs-number">0</span>] = is_prime[<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>;<br>    <br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">2</span>; i * i &lt; MAX_N; i++) &#123;<br>        <span class="hljs-keyword">if</span> (is_prime[i]) &#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = i * i; j &lt; MAX_N; j += i) &#123;<br>                is_prime[j] = <span class="hljs-number">0</span>;<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>知识点</strong>：</p>
+<ul>
+<li>初始化所有数为素数</li>
+<li>从2开始，标记所有素数的倍数为非素数</li>
+<li>优化：只需检查到<code>i * i &lt; MAX_N</code></li>
+<li>时间复杂度：O(n log log n)</li>
+</ul>
+<h4 id="2-2-2-线性查找素数因子"><a href="#2-2-2-线性查找素数因子" class="headerlink" title="2.2.2 线性查找素数因子"></a>2.2.2 线性查找素数因子</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">is_semiprime</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">2</span>; i * i &lt;= n; i++) &#123;<br>        <span class="hljs-keyword">if</span> (n % i == <span class="hljs-number">0</span> &amp;&amp; is_prime[i] &amp;&amp; is_prime[n / i]) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>知识点</strong>：</p>
+<ul>
+<li>遍历所有可能的素数因子</li>
+<li>检查<code>i</code>和<code>n/i</code>是否都是素数</li>
+<li>优化：只需检查到<code>i * i &lt;= n</code></li>
+<li>时间复杂度：O(√n)</li>
+</ul>
+<h3 id="2-3-算法选择与优化"><a href="#2-3-算法选择与优化" class="headerlink" title="2.3 算法选择与优化"></a>2.3 算法选择与优化</h3><ul>
+<li><strong>预处理</strong>：使用埃氏筛预先标记所有素数</li>
+<li><strong>查找优化</strong>：利用素数性质减少查找范围</li>
+<li><strong>空间换时间</strong>：使用数组存储素数标记</li>
+</ul>
+<h2 id="3-电缆切割"><a href="#3-电缆切割" class="headerlink" title="3. 电缆切割"></a>3. 电缆切割</h2><h3 id="3-1-题目概述"><a href="#3-1-题目概述" class="headerlink" title="3.1 题目概述"></a>3.1 题目概述</h3><p>将电缆切成等长的K段，求最大可能的长度</p>
+<h3 id="3-2-关键知识点与代码对应"><a href="#3-2-关键知识点与代码对应" class="headerlink" title="3.2 关键知识点与代码对应"></a>3.2 关键知识点与代码对应</h3><h4 id="3-2-1-二分查找实现"><a href="#3-2-1-二分查找实现" class="headerlink" title="3.2.1 二分查找实现"></a>3.2.1 二分查找实现</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">double</span> left = <span class="hljs-number">0.01</span>, right = max_len;<br><span class="hljs-type">const</span> <span class="hljs-type">double</span> EPS = <span class="hljs-number">1e-5</span>;<br><span class="hljs-keyword">while</span> (right - left &gt; EPS) &#123;<br>    <span class="hljs-type">double</span> mid = (left + right) / <span class="hljs-number">2</span>;<br>    <span class="hljs-type">int</span> count = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; N; i++) &#123;<br>        count += (<span class="hljs-type">int</span>)(cables[i] / mid);<br>    &#125;<br>    <span class="hljs-keyword">if</span> (count &gt;= K) &#123;<br>        left = mid;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        right = mid;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>知识点</strong>：</p>
+<ul>
+<li>设置搜索区间<code>left</code>和<code>right</code></li>
+<li>使用中间值<code>mid</code>进行试探</li>
+<li>根据结果调整搜索区间</li>
+<li>时间复杂度：O(n log(max_len&#x2F;eps))</li>
+</ul>
+<h4 id="3-2-2-浮点数精度处理"><a href="#3-2-2-浮点数精度处理" class="headerlink" title="3.2.2 浮点数精度处理"></a>3.2.2 浮点数精度处理</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">const</span> <span class="hljs-type">double</span> EPS = <span class="hljs-number">1e-5</span>;<br><span class="hljs-keyword">while</span> (right - left &gt; EPS) &#123;<br>    <span class="hljs-type">double</span> mid = (left + right) / <span class="hljs-number">2</span>;<br>    <span class="hljs-comment">// 处理逻辑</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>知识点</strong>：</p>
+<ul>
+<li>设置适当的精度阈值EPS</li>
+<li>使用EPS控制循环终止条件</li>
+<li>避免直接比较浮点数相等</li>
+</ul>
+<h3 id="3-3-算法选择与优化"><a href="#3-3-算法选择与优化" class="headerlink" title="3.3 算法选择与优化"></a>3.3 算法选择与优化</h3><ul>
+<li><strong>问题转化</strong>：将问题转化为”查找最大可行长度”</li>
+<li><strong>算法选择</strong>：二分查找适合这种”最大值&#x2F;最小值”问题</li>
+<li><strong>精度控制</strong>：通过EPS控制浮点数精度</li>
+</ul>
+<h2 id="4-3SUM-问题"><a href="#4-3SUM-问题" class="headerlink" title="4. 3SUM+问题"></a>4. 3SUM+问题</h2><h3 id="4-1-题目概述"><a href="#4-1-题目概述" class="headerlink" title="4.1 题目概述"></a>4.1 题目概述</h3><p>找出最大的d，使得d&#x3D;a+b+c，且a,b,c,d互不相同</p>
+<h3 id="4-2-关键知识点与代码对应"><a href="#4-2-关键知识点与代码对应" class="headerlink" title="4.2 关键知识点与代码对应"></a>4.2 关键知识点与代码对应</h3><h4 id="4-2-1-排序预处理"><a href="#4-2-1-排序预处理" class="headerlink" title="4.2.1 排序预处理"></a>4.2.1 排序预处理</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">cmp</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">void</span> *a, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *b)</span> &#123;<br>    <span class="hljs-keyword">return</span> (*(<span class="hljs-type">int</span> *)a - *(<span class="hljs-type">int</span> *)b);<br>&#125;<br>qsort(arr, N, <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>), cmp);<br></code></pre></td></tr></table></figure>
+<p><strong>知识点</strong>：</p>
+<ul>
+<li>使用<code>qsort</code>进行排序</li>
+<li>自定义比较函数</li>
+<li>时间复杂度：O(n log n)</li>
+</ul>
+<h4 id="4-2-2-双指针查找"><a href="#4-2-2-双指针查找" class="headerlink" title="4.2.2 双指针查找"></a>4.2.2 双指针查找</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> d = N - <span class="hljs-number">1</span>; d &gt;= <span class="hljs-number">3</span>; d--) &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> a = <span class="hljs-number">0</span>; a &lt; d - <span class="hljs-number">2</span>; a++) &#123;<br>        <span class="hljs-type">int</span> target = arr[d] - arr[a];<br>        <span class="hljs-type">int</span> left = a + <span class="hljs-number">1</span>, right = d - <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">while</span> (left &lt; right) &#123;<br>            <span class="hljs-type">int</span> sum = arr[left] + arr[right];<br>            <span class="hljs-keyword">if</span> (sum &lt; target) &#123;<br>                left++;<br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (sum &gt; target) &#123;<br>                right--;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, arr[d]);<br>                found = <span class="hljs-number">1</span>;<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>知识点</strong>：</p>
+<ul>
+<li>固定一个变量，用双指针查找另外两个</li>
+<li>根据sum与target的关系移动指针</li>
+<li>时间复杂度：O(n^3) → O(n^2)</li>
+</ul>
+<h4 id="4-2-3-边界条件处理"><a href="#4-2-3-边界条件处理" class="headerlink" title="4.2.3 边界条件处理"></a>4.2.3 边界条件处理</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// 确保指针不越界</span><br><span class="hljs-type">int</span> left = a + <span class="hljs-number">1</span>, right = d - <span class="hljs-number">1</span>;<br><span class="hljs-keyword">while</span> (left &lt; right) &#123;<br>    <span class="hljs-comment">// 处理逻辑</span><br>&#125;<br><br><span class="hljs-comment">// 提前终止不可能的情况</span><br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> d = N - <span class="hljs-number">1</span>; d &gt;= <span class="hljs-number">3</span> &amp;&amp; !found; d--) &#123;<br>    <span class="hljs-comment">// 循环条件中包含 !found</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>知识点</strong>：</p>
+<ul>
+<li>防止数组越界</li>
+<li>提前终止不可能的情况</li>
+<li>使用标志变量优化</li>
+</ul>
+<h3 id="4-3-算法选择与优化"><a href="#4-3-算法选择与优化" class="headerlink" title="4.3 算法选择与优化"></a>4.3 算法选择与优化</h3><ul>
+<li><strong>预处理</strong>：排序后可以使用双指针</li>
+<li><strong>暴力法</strong>：四层循环，时间复杂度O(n^4)</li>
+<li><strong>优化</strong>：双指针将时间复杂度降到O(n^2)</li>
+<li><strong>边界处理</strong>：确保指针移动的正确性</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><table>
+<thead>
+<tr>
+<th>题目</th>
+<th>核心算法</th>
+<th>时间复杂度</th>
+<th>关键点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>字典翻译</td>
+<td>线性查找 → 哈希查找</td>
+<td>O(n) → O(1)</td>
+<td>输入处理、字符串比较</td>
+</tr>
+<tr>
+<td>半素数判断</td>
+<td>埃氏筛 + 线性查找</td>
+<td>O(n log log n)</td>
+<td>素数预处理、因子查找</td>
+</tr>
+<tr>
+<td>电缆切割</td>
+<td>二分查找</td>
+<td>O(n log(max_len&#x2F;eps))</td>
+<td>浮点数精度、区间调整</td>
+</tr>
+<tr>
+<td>3SUM+</td>
+<td>排序 + 双指针</td>
+<td>O(n^3) → O(n^2)</td>
+<td>排序、指针移动、边界处理</td>
+</tr>
+</tbody></table>
+<h2 id="四、查找算法选择指南"><a href="#四、查找算法选择指南" class="headerlink" title="四、查找算法选择指南"></a>四、查找算法选择指南</h2><table>
+<thead>
+<tr>
+<th>场景</th>
+<th>推荐算法</th>
+<th>时间复杂度</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>无序小规模数据</td>
+<td>线性查找</td>
+<td>O(n)</td>
+<td>简单易实现</td>
+</tr>
+<tr>
+<td>有序数据</td>
+<td>二分查找</td>
+<td>O(log n)</td>
+<td>需要预先排序</td>
+</tr>
+<tr>
+<td>需要频繁查找</td>
+<td>哈希查找</td>
+<td>平均O(1)</td>
+<td>需要额外空间</td>
+</tr>
+<tr>
+<td>有序数组中的三元组</td>
+<td>双指针</td>
+<td>O(n^2)</td>
+<td>需要预先排序</td>
+</tr>
+</tbody></table>
+<h2 id="五、常见问题与解决方案"><a href="#五、常见问题与解决方案" class="headerlink" title="五、常见问题与解决方案"></a>五、常见问题与解决方案</h2><h3 id="1-输入处理问题"><a href="#1-输入处理问题" class="headerlink" title="1. 输入处理问题"></a>1. 输入处理问题</h3><ul>
+<li><strong>问题</strong>：如何处理输入中的空行或特殊分隔符</li>
+<li><strong>解决方案</strong>：<ul>
+<li>使用<code>fgets</code>按行读取</li>
+<li>使用<code>sscanf</code>或<code>strtok</code>解析行内容</li>
+</ul>
+</li>
+<li><strong>代码示例</strong>：<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">while</span> (fgets(line, <span class="hljs-keyword">sizeof</span>(line), <span class="hljs-built_in">stdin</span>)) &#123;<br>    <span class="hljs-keyword">if</span> (line[<span class="hljs-number">0</span>] == <span class="hljs-string">&#x27;\n&#x27;</span>) <span class="hljs-keyword">break</span>;<br>    <span class="hljs-built_in">sscanf</span>(line, <span class="hljs-string">&quot;%s %s&quot;</span>, eng[dict_count], dialect[dict_count]);<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="2-浮点数精度问题"><a href="#2-浮点数精度问题" class="headerlink" title="2. 浮点数精度问题"></a>2. 浮点数精度问题</h3><ul>
+<li><strong>问题</strong>：浮点数比较和二分查找中的精度控制</li>
+<li><strong>解决方案</strong>：<ul>
+<li>设置足够小的误差范围（EPS）</li>
+<li>使用整数运算代替浮点运算</li>
+</ul>
+</li>
+<li><strong>代码示例</strong>：<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">const</span> <span class="hljs-type">double</span> EPS = <span class="hljs-number">1e-5</span>;<br><span class="hljs-keyword">while</span> (right - left &gt; EPS) &#123;<br>    <span class="hljs-type">double</span> mid = (left + right) / <span class="hljs-number">2</span>;<br>    <span class="hljs-comment">// 处理逻辑</span><br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="3-查找效率问题"><a href="#3-查找效率问题" class="headerlink" title="3. 查找效率问题"></a>3. 查找效率问题</h3><ul>
+<li><strong>问题</strong>：大规模数据下的查找效率</li>
+<li><strong>解决方案</strong>：<ul>
+<li>使用更高效的查找算法（如哈希表）</li>
+<li>预处理数据（如排序）</li>
+</ul>
+</li>
+<li><strong>代码示例</strong>：<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp">std::unordered_map&lt;std::string, std::string&gt; dict;<br><span class="hljs-comment">// 插入数据</span><br>dict[word2] = word1;<br><span class="hljs-comment">// 查找</span><br><span class="hljs-keyword">if</span> (dict.<span class="hljs-built_in">find</span>(word) != dict.<span class="hljs-built_in">end</span>()) &#123;<br>    std::cout &lt;&lt; dict[word] &lt;&lt; std::endl;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="六、代码模板"><a href="#六、代码模板" class="headerlink" title="六、代码模板"></a>六、代码模板</h2><h3 id="1-线性查找"><a href="#1-线性查找" class="headerlink" title="1. 线性查找"></a>1. 线性查找</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">linear_search</span><span class="hljs-params">(<span class="hljs-type">int</span> arr[], <span class="hljs-type">int</span> n, <span class="hljs-type">int</span> target)</span> &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>        <span class="hljs-keyword">if</span> (arr[i] == target) &#123;<br>            <span class="hljs-keyword">return</span> i;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="2-二分查找-1"><a href="#2-二分查找-1" class="headerlink" title="2. 二分查找"></a>2. 二分查找</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">binary_search</span><span class="hljs-params">(<span class="hljs-type">int</span> arr[], <span class="hljs-type">int</span> n, <span class="hljs-type">int</span> target)</span> &#123;<br>    <span class="hljs-type">int</span> left = <span class="hljs-number">0</span>, right = n - <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span> (left &lt;= right) &#123;<br>        <span class="hljs-type">int</span> mid = left + (right - left) / <span class="hljs-number">2</span>;<br>        <span class="hljs-keyword">if</span> (arr[mid] == target) &#123;<br>            <span class="hljs-keyword">return</span> mid;<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (arr[mid] &lt; target) &#123;<br>            left = mid + <span class="hljs-number">1</span>;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            right = mid - <span class="hljs-number">1</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-双指针查找"><a href="#3-双指针查找" class="headerlink" title="3. 双指针查找"></a>3. 双指针查找</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">two_pointers</span><span class="hljs-params">(<span class="hljs-type">int</span> arr[], <span class="hljs-type">int</span> n)</span> &#123;<br>    <span class="hljs-type">int</span> left = <span class="hljs-number">0</span>, right = n - <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span> (left &lt; right) &#123;<br>        <span class="hljs-comment">// 根据具体问题处理</span><br>        <span class="hljs-keyword">if</span> (condition(arr[left], arr[right])) &#123;<br>            left++;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            right--;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="七、总结"><a href="#七、总结" class="headerlink" title="七、总结"></a>七、总结</h2><ol>
+<li><p><strong>查找算法选择</strong>：</p>
+<ul>
+<li>根据数据特性和问题需求选择合适的查找算法</li>
+<li>考虑时间复杂度和空间复杂度的平衡</li>
+<li>注意数据规模和操作频率</li>
+</ul>
+</li>
+<li><p><strong>预处理的重要性</strong>：</p>
+<ul>
+<li>排序可以显著提高查找效率</li>
+<li>哈希表需要预先构建</li>
+<li>素数筛等预处理可以加速后续操作</li>
+</ul>
+</li>
+<li><p><strong>边界条件处理</strong>：</p>
+<ul>
+<li>注意空输入的情况</li>
+<li>处理重复元素</li>
+<li>控制浮点数精度</li>
+</ul>
+</li>
+<li><p><strong>优化思路</strong>：</p>
+<ul>
+<li>暴力查找 → 排序+二分 → 哈希表</li>
+<li>逐步优化查找效率</li>
+<li>平衡时间和空间复杂度</li>
+</ul>
+</li>
+</ol>
+<p>通过以上总结，我们可以更好地理解和应用各种查找算法，解决实际问题。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="category-chain-item">学习</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E5%AD%A6%E4%B9%A0/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%AE%97%E6%B3%95/" class="print-no-link">#算法</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>查找专题</div>
+      <div>https://lin00xxx.github.io/2026/10/15/notes/查找/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>dokiii</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>October 15, 2026</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/10/15/notes/%E6%8E%92%E5%BA%8F/" title="排序专题">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">排序专题</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/10/08/notes/%E6%8E%92%E5%BA%8F%E9%A2%98%E8%A7%A3/" title="排序例题及知识点">
+                        <span class="hidden-mobile">排序例题及知识点</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
