@@ -1,0 +1,936 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" href="/img/favicon.jpg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="dokiii">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="二分查找、贪心、几何枚举与数值枚举这份笔记整理了最近练习的 4 道题：  穿梭星球：移走最多 M 个星球，让最小相邻距离最大。 星星组成正方形：给定二维坐标，统计正方形数量。 电缆分割：把现有电缆切成至少 K 段等长电缆，求最长长度。 赌徒下注：判断某个数是否等于另外三个不同数之和，输出最大的获胜值。  重点不是背代码，而是学会识别题型、确定”枚举什么”、以及判断答案是否可行。  一、穿梭星球：二">
+<meta property="og:type" content="article">
+<meta property="og:title" content="查找题解">
+<meta property="og:url" content="https://lin00xxx.github.io/2026/10/31/notes/%E6%9F%A5%E6%89%BE%E9%A2%98%E8%A7%A3/index.html">
+<meta property="og:site_name" content="dokiii">
+<meta property="og:description" content="二分查找、贪心、几何枚举与数值枚举这份笔记整理了最近练习的 4 道题：  穿梭星球：移走最多 M 个星球，让最小相邻距离最大。 星星组成正方形：给定二维坐标，统计正方形数量。 电缆分割：把现有电缆切成至少 K 段等长电缆，求最长长度。 赌徒下注：判断某个数是否等于另外三个不同数之和，输出最大的获胜值。  重点不是背代码，而是学会识别题型、确定”枚举什么”、以及判断答案是否可行。  一、穿梭星球：二">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-10-31T10:51:53.613Z">
+<meta property="article:modified_time" content="2026-10-31T10:51:53.613Z">
+<meta property="article:author" content="dokiii">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>查找题解 - dokiii</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lin00xxx.github.io","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70px;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>Home</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>Archives</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>Categories</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>Tags</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>About</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>Search</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="Light"
+               data-label-dark="Dark">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">Dark</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">查找题解</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="二分查找、贪心、几何枚举与数值枚举"><a href="#二分查找、贪心、几何枚举与数值枚举" class="headerlink" title="二分查找、贪心、几何枚举与数值枚举"></a>二分查找、贪心、几何枚举与数值枚举</h1><p>这份笔记整理了最近练习的 4 道题：</p>
+<ol>
+<li>穿梭星球：移走最多 M 个星球，让最小相邻距离最大。</li>
+<li>星星组成正方形：给定二维坐标，统计正方形数量。</li>
+<li>电缆分割：把现有电缆切成至少 K 段等长电缆，求最长长度。</li>
+<li>赌徒下注：判断某个数是否等于另外三个不同数之和，输出最大的获胜值。</li>
+</ol>
+<p>重点不是背代码，而是学会识别题型、确定”枚举什么”、以及判断答案是否可行。</p>
+<hr>
+<h2 id="一、穿梭星球：二分答案-贪心"><a href="#一、穿梭星球：二分答案-贪心" class="headerlink" title="一、穿梭星球：二分答案 + 贪心"></a>一、穿梭星球：二分答案 + 贪心</h2><h3 id="1-题目在问什么？"><a href="#1-题目在问什么？" class="headerlink" title="1. 题目在问什么？"></a>1. 题目在问什么？</h3><p>起点是 0，终点是 L，中间有 N 个星球。允许移走 M<br>个中间星球，要求移走后相邻保留星球的最小距离尽可能大。</p>
+<h3 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2. 解题思路"></a>2. 解题思路</h3><p>直接尝试所有可能的答案很麻烦，因此二分”最小距离”。</p>
+<p>假设猜测最小距离为 <code>mid</code>，从左向右检查星球：</p>
+<ul>
+<li>如果当前星球与上一个保留星球的距离小于 <code>mid</code>，就移走当前星球。</li>
+<li>否则保留当前星球，并把它作为新的上一个保留星球。</li>
+<li>最后，如果移走数量不超过 M，说明 <code>mid</code><br>可行，可以继续尝试更大的距离；否则距离太大，需要尝试更小的距离。</li>
+</ul>
+<p>这里的贪心策略是：距离不够时，移走当前星球，让上一个保留星球保持不变。</p>
+<h3 id="3-关键代码"><a href="#3-关键代码" class="headerlink" title="3. 关键代码"></a>3. 关键代码</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> left = <span class="hljs-number">0</span>, right = L, ans = <span class="hljs-number">0</span>;<br><br><span class="hljs-keyword">while</span> (left &lt;= right)<br>&#123;<br>    <span class="hljs-type">int</span> mid = (left + right) / <span class="hljs-number">2</span>;<br>    <span class="hljs-type">int</span> removed = <span class="hljs-number">0</span>;<br>    <span class="hljs-type">int</span> last = <span class="hljs-number">0</span>;  <span class="hljs-comment">// 起点的下标</span><br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= N + <span class="hljs-number">1</span>; i++)<br>    &#123;<br>        <span class="hljs-keyword">if</span> (D[i] - D[last] &lt; mid)<br>            removed++;<br>        <span class="hljs-keyword">else</span><br>            last = i;<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (removed &lt;= M)<br>    &#123;<br>        ans = mid;<br>        left = mid + <span class="hljs-number">1</span>;   <span class="hljs-comment">// 可行，尝试更大</span><br>    &#125;<br>    <span class="hljs-keyword">else</span><br>    &#123;<br>        right = mid - <span class="hljs-number">1</span>;  <span class="hljs-comment">// 不可行，尝试更小</span><br>    &#125;<br>&#125;<br><br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, ans);<br></code></pre></td></tr></table></figure>
+
+<p>数组需要提前补上起点和终点：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c">D[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;<br><span class="hljs-comment">// 中间星球读入 D[1] 到 D[N]</span><br>D[N + <span class="hljs-number">1</span>] = L;<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-对应知识点"><a href="#4-对应知识点" class="headerlink" title="4. 对应知识点"></a>4. 对应知识点</h3><ul>
+<li>二分查找答案：不是在数组里找某个数，而是在答案范围里找最大可行值。</li>
+<li>贪心：每一步按规则做局部选择。</li>
+<li><code>last</code>：上一个保留星球的下标。</li>
+<li><code>removed</code>：当前猜测距离需要移走的星球数。</li>
+</ul>
+<h3 id="5-识别技巧"><a href="#5-识别技巧" class="headerlink" title="5. 识别技巧"></a>5. 识别技巧</h3><p>看到”最大化最小值””最小距离尽可能大”，并且能判断某个距离是否可行时，可以考虑二分答案。</p>
+<hr>
+<h2 id="二、星星组成正方形：枚举边-坐标变换-查找"><a href="#二、星星组成正方形：枚举边-坐标变换-查找" class="headerlink" title="二、星星组成正方形：枚举边 + 坐标变换 + 查找"></a>二、星星组成正方形：枚举边 + 坐标变换 + 查找</h2><h3 id="1-题目在问什么？-1"><a href="#1-题目在问什么？-1" class="headerlink" title="1. 题目在问什么？"></a>1. 题目在问什么？</h3><p>给出 N<br>个二维坐标，问其中有多少组点可以组成正方形。正方形可能倾斜，不一定与坐标轴平行。</p>
+<h3 id="2-解题思路-1"><a href="#2-解题思路-1" class="headerlink" title="2. 解题思路"></a>2. 解题思路</h3><p>正方形的四个顶点中，任选一条边 AB。假设：</p>
+<ul>
+<li>A &#x3D; <code>(x1, y1)</code></li>
+<li>B &#x3D; <code>(x2, y2)</code></li>
+<li><code>dx = x2 - x1</code></li>
+<li><code>dy = y2 - y1</code></li>
+</ul>
+<p>把向量 <code>(dx, dy)</code> 旋转 90°，可以得到垂直方向的向量<br><code>(-dy, dx)</code>。因此，正方形的另外两个顶点可以是：</p>
+<ul>
+<li><code>(x1 - dy, y1 + dx)</code> 和 <code>(x2 - dy, y2 + dx)</code></li>
+<li>或 <code>(x1 + dy, y1 - dx)</code> 和 <code>(x2 + dy, y2 - dx)</code></li>
+</ul>
+<p>两种方向都要检查。若另外两个点也存在，就找到了一个正方形。</p>
+<h3 id="3-关键代码：由一条边算出另外两个点"><a href="#3-关键代码：由一条边算出另外两个点" class="headerlink" title="3. 关键代码：由一条边算出另外两个点"></a>3. 关键代码：由一条边算出另外两个点</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> dx = p[j].x - p[i].x;<br><span class="hljs-type">int</span> dy = p[j].y - p[i].y;<br><br><span class="hljs-comment">/* 向量旋转 90 度的一种方向 */</span><br><span class="hljs-type">int</span> x3 = p[i].x - dy;<br><span class="hljs-type">int</span> y3 = p[i].y + dx;<br><span class="hljs-type">int</span> x4 = p[j].x - dy;<br><span class="hljs-type">int</span> y4 = p[j].y + dx;<br><br><span class="hljs-comment">/* 检查 (x3,y3) 和 (x4,y4) 是否都存在 */</span><br><br><span class="hljs-comment">/* 另一种旋转方向 */</span><br>x3 = p[i].x + dy;<br>y3 = p[i].y - dx;<br>x4 = p[j].x + dy;<br>y4 = p[j].y - dx;<br><br><span class="hljs-comment">/* 再检查一次 */</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="4-如何判断坐标是否存在？"><a href="#4-如何判断坐标是否存在？" class="headerlink" title="4. 如何判断坐标是否存在？"></a>4. 如何判断坐标是否存在？</h3><p>可以先按 x、y 排序，再用二分查找。排序后，坐标按 <code>(x, y)</code> 的字典序排列。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">find</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y, <span class="hljs-type">int</span> n)</span><br>&#123;<br>    <span class="hljs-type">int</span> left = <span class="hljs-number">0</span>, right = n - <span class="hljs-number">1</span>;<br><br>    <span class="hljs-keyword">while</span> (left &lt;= right)<br>    &#123;<br>        <span class="hljs-type">int</span> mid = (left + right) / <span class="hljs-number">2</span>;<br><br>        <span class="hljs-keyword">if</span> (p[mid].x == x &amp;&amp; p[mid].y == y)<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br><br>        <span class="hljs-keyword">if</span> (p[mid].x &lt; x ||<br>            (p[mid].x == x &amp;&amp; p[mid].y &lt; y))<br>            left = mid + <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">else</span><br>            right = mid - <span class="hljs-number">1</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-为什么最后除以-4？"><a href="#5-为什么最后除以-4？" class="headerlink" title="5. 为什么最后除以 4？"></a>5. 为什么最后除以 4？</h3><p>同一个正方形的四条边都可能被枚举为 AB，因此每个正方形会被统计 4<br>次，最终答案要除以 4。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>, ans / <span class="hljs-number">4</span>);<br></code></pre></td></tr></table></figure>
+
+<p>完整枚举的核心：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">long</span> <span class="hljs-type">long</span> ans = <span class="hljs-number">0</span>;<br><br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)<br>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = i + <span class="hljs-number">1</span>; j &lt; n; j++)<br>    &#123;<br>        <span class="hljs-comment">/* 根据 p[i]、p[j] 计算另外两个点 */</span><br>        <span class="hljs-comment">/* 两种旋转方向分别判断 */</span><br>        <span class="hljs-comment">/* 每找到一组符合条件的顶点，ans++ */</span><br>    &#125;<br>&#125;<br><br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>, ans / <span class="hljs-number">4</span>);<br></code></pre></td></tr></table></figure>
+
+<h3 id="6-对应知识点"><a href="#6-对应知识点" class="headerlink" title="6. 对应知识点"></a>6. 对应知识点</h3><ul>
+<li>枚举：枚举每一对点，尝试把它们作为正方形的一条边。</li>
+<li>二维坐标与向量：用坐标差 <code>(dx, dy)</code> 表示边的方向。</li>
+<li>旋转 90°：<code>(dx, dy)</code> 旋转后变为 <code>(-dy, dx)</code> 或 <code>(dy, -dx)</code>。</li>
+<li>排序 + 二分查找：快速判断一个坐标是否存在。</li>
+<li>去重计数：考虑同一个正方形被重复统计了几次。</li>
+</ul>
+<h3 id="7-识别技巧"><a href="#7-识别技巧" class="headerlink" title="7. 识别技巧"></a>7. 识别技巧</h3><p>看到”给出点的坐标，统计能组成多少个图形”，先想：</p>
+<ol>
+<li>枚举哪些点或边？</li>
+<li>能否根据已知点计算剩余顶点？</li>
+<li>如何快速判断计算出的点是否存在？</li>
+<li>同一个图形会不会被重复统计？</li>
+</ol>
+<hr>
+<h2 id="三、电缆分割：二分答案-贪心计数"><a href="#三、电缆分割：二分答案-贪心计数" class="headerlink" title="三、电缆分割：二分答案 + 贪心计数"></a>三、电缆分割：二分答案 + 贪心计数</h2><h3 id="1-题目在问什么？-2"><a href="#1-题目在问什么？-2" class="headerlink" title="1. 题目在问什么？"></a>1. 题目在问什么？</h3><p>有 N 根电缆，长度精确到厘米。要切出至少 K<br>段等长电缆，求每段电缆最长能有多少米。</p>
+<h3 id="2-关键技巧：统一换算成厘米"><a href="#2-关键技巧：统一换算成厘米" class="headerlink" title="2. 关键技巧：统一换算成厘米"></a>2. 关键技巧：统一换算成厘米</h3><p>由于长度精确到厘米，直接用整数厘米计算更方便，也避免浮点数比较造成误差。</p>
+<p>例如 <code>8.02</code> 米换成 <code>802</code> 厘米。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">double</span> x;<br><span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lf&quot;</span>, &amp;x);<br>len[i] = (<span class="hljs-type">int</span>)(x * <span class="hljs-number">100</span> + <span class="hljs-number">0.5</span>);<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-解题思路"><a href="#3-解题思路" class="headerlink" title="3. 解题思路"></a>3. 解题思路</h3><p>二分每段电缆的长度 <code>mid</code>（单位：厘米）。</p>
+<p>如果某根电缆长度为 <code>len[i]</code>，它能切出：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">len[i] / mid<br></code></pre></td></tr></table></figure>
+
+<p>段长度为 <code>mid</code> 的电缆。</p>
+<p>把所有电缆能切出的段数相加：</p>
+<ul>
+<li>总段数 <code>&gt;= K</code>：长度可行，可以尝试更长。</li>
+<li>总段数 <code>&lt; K</code>：长度太长，需要缩短。</li>
+</ul>
+<h3 id="4-关键代码"><a href="#4-关键代码" class="headerlink" title="4. 关键代码"></a>4. 关键代码</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> left = <span class="hljs-number">1</span>, right = maxLen, ans = <span class="hljs-number">0</span>;<br><br><span class="hljs-keyword">while</span> (left &lt;= right)<br>&#123;<br>    <span class="hljs-type">int</span> mid = (left + right) / <span class="hljs-number">2</span>;<br>    <span class="hljs-type">int</span> pieces = <span class="hljs-number">0</span>;<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; N; i++)<br>        pieces += len[i] / mid;<br><br>    <span class="hljs-keyword">if</span> (pieces &gt;= K)<br>    &#123;<br>        ans = mid;<br>        left = mid + <span class="hljs-number">1</span>;<br>    &#125;<br>    <span class="hljs-keyword">else</span><br>    &#123;<br>        right = mid - <span class="hljs-number">1</span>;<br>    &#125;<br>&#125;<br><br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%.2f\n&quot;</span>, ans / <span class="hljs-number">100.0</span>);<br></code></pre></td></tr></table></figure>
+
+<p>如果 <code>ans == 0</code>，输出自然就是 <code>0.00</code>。</p>
+<h3 id="5-对应知识点"><a href="#5-对应知识点" class="headerlink" title="5. 对应知识点"></a>5. 对应知识点</h3><ul>
+<li>二分答案：求最大的可行电缆长度。</li>
+<li>整数化：把米换算成厘米，避免浮点误差。</li>
+<li>贪心计数：每根电缆尽可能切出指定长度的段，计算总数。</li>
+<li>整数除法：<code>len[i] / mid</code> 表示能切出的完整段数，小数部分不能算一段。</li>
+</ul>
+<h3 id="6-识别技巧"><a href="#6-识别技巧" class="headerlink" title="6. 识别技巧"></a>6. 识别技巧</h3><p>看到”分成相同长度””每段越长越好””至少需要 K<br>段”，可以尝试二分长度，并计算每个长度能切出多少段。</p>
+<p>与穿梭星球题比较：</p>
+<ul>
+<li>穿梭星球：判断一个距离是否需要移走不超过 M 个点。</li>
+<li>电缆分割：判断一个长度是否能切出至少 K 段。</li>
+</ul>
+<p>两道题都是”二分答案”，只是可行性判断不同。</p>
+<hr>
+<h2 id="四、赌徒下注：排序-枚举-双指针"><a href="#四、赌徒下注：排序-枚举-双指针" class="headerlink" title="四、赌徒下注：排序 + 枚举 + 双指针"></a>四、赌徒下注：排序 + 枚举 + 双指针</h2><h3 id="1-题目在问什么？-3"><a href="#1-题目在问什么？-3" class="headerlink" title="1. 题目在问什么？"></a>1. 题目在问什么？</h3><p>给出 N 个互不相同的整数。若某个数 d 等于另外三个不同赌徒的下注之和，就称<br>d 是获胜者。若有多个获胜者，输出最大的 d；没有则输出 <code>no solution</code>。</p>
+<p>注意：组成和的三个数，以及目标数 d，必须来自四个不同的人。</p>
+<h3 id="2-解题思路-2"><a href="#2-解题思路-2" class="headerlink" title="2. 解题思路"></a>2. 解题思路</h3><p>先排序，从大到小枚举目标值 d，因为我们想找最大的获胜值。</p>
+<p>固定目标值 d，再枚举其中一个加数 c。剩下需要找两个数 a、b，使：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">a + b = d - c<br></code></pre></td></tr></table></figure>
+
+<p>由于数组已经排序，可以用双指针寻找 a 和 b：</p>
+<ul>
+<li><code>a</code> 从较小的数开始。</li>
+<li><code>b</code> 从较大的数开始。</li>
+<li>如果 <code>a + b</code> 太小，增大 a。</li>
+<li>如果 <code>a + b</code> 太大，减小 b。</li>
+<li>相等时，检查四个下标是否互不相同。</li>
+</ul>
+<h3 id="3-关键代码框架"><a href="#3-关键代码框架" class="headerlink" title="3. 关键代码框架"></a>3. 关键代码框架</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs c">qsort(a, n, <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>), cmp);<br><br><span class="hljs-comment">/* 从最大的目标值开始 */</span><br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> d = n - <span class="hljs-number">1</span>; d &gt;= <span class="hljs-number">0</span>; d--)<br>&#123;<br>    <span class="hljs-type">int</span> found = <span class="hljs-number">0</span>;<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> c = n - <span class="hljs-number">1</span>; c &gt;= <span class="hljs-number">0</span> &amp;&amp; !found; c--)<br>    &#123;<br>        <span class="hljs-keyword">if</span> (c == d)<br>            <span class="hljs-keyword">continue</span>;<br><br>        <span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> j = n - <span class="hljs-number">1</span>;<br>        <span class="hljs-type">int</span> target = a[d] - a[c];<br><br>        <span class="hljs-keyword">while</span> (i &lt; j)<br>        &#123;<br>            <span class="hljs-keyword">if</span> (i == c || i == d)<br>            &#123;<br>                i++;<br>                <span class="hljs-keyword">continue</span>;<br>            &#125;<br><br>            <span class="hljs-keyword">if</span> (j == c || j == d)<br>            &#123;<br>                j--;<br>                <span class="hljs-keyword">continue</span>;<br>            &#125;<br><br>            <span class="hljs-type">long</span> <span class="hljs-type">long</span> sum = (<span class="hljs-type">long</span> <span class="hljs-type">long</span>)a[i] + a[j];<br><br>            <span class="hljs-keyword">if</span> (sum == target)<br>            &#123;<br>                found = <span class="hljs-number">1</span>;<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (sum &lt; target)<br>                i++;<br>            <span class="hljs-keyword">else</span><br>                j--;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (found)<br>    &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, a[d]);<br>        <span class="hljs-keyword">break</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>上面是核心思路框架。实际提交时，要在每组数据中初始化结果标记，并在整个<br><code>d</code> 循环结束后，如果没有找到答案就输出 <code>no solution</code>。</p>
+<h3 id="4-为什么要从大到小枚举-d？"><a href="#4-为什么要从大到小枚举-d？" class="headerlink" title="4. 为什么要从大到小枚举 d？"></a>4. 为什么要从大到小枚举 d？</h3><p>因为题目要求输出最大的获胜值。</p>
+<p>如果先检查最大的<br>d，并且确认它能由另外三个不同的数相加得到，那么它就是答案，可以停止搜索，不必再检查更小的目标值。</p>
+<h3 id="5-对应知识点-1"><a href="#5-对应知识点-1" class="headerlink" title="5. 对应知识点"></a>5. 对应知识点</h3><ul>
+<li>排序：方便从大到小枚举目标值，并使用双指针。</li>
+<li>枚举：固定目标值 d 和一个加数 c。</li>
+<li>双指针：在有序数组中寻找两个数之和。</li>
+<li>下标去重：四个数必须来自四个不同的人。</li>
+<li><code>long long</code>：加法时使用更宽的整数类型，避免潜在溢出。</li>
+</ul>
+<h3 id="6-识别技巧-1"><a href="#6-识别技巧-1" class="headerlink" title="6. 识别技巧"></a>6. 识别技巧</h3><p>看到”某个数等于其他几个数之和”，可以先固定目标值，再把问题转成两数之和或三数之和。</p>
+<p>注意：双指针的前提是数组已经排序。并且不能只比较数值，还要保证使用的是不同下标。</p>
+<hr>
+<h2 id="五、四道题的题型对比"><a href="#五、四道题的题型对比" class="headerlink" title="五、四道题的题型对比"></a>五、四道题的题型对比</h2><p>  题目             核心方法                   主要判断</p>
+<hr>
+<p>  穿梭星球         二分答案 + 贪心            移走数量是否不超过 M<br>  星星组成正方形   枚举边 + 坐标变换 + 查找   另外两个顶点是否存在<br>  电缆分割         二分答案 + 贪心计数        能否切出至少 K 段<br>  赌徒下注         排序 + 枚举 + 双指针       是否存在三个不同数之和等于目标值</p>
+<h2 id="六、遇到类似题目时，按这个顺序思考"><a href="#六、遇到类似题目时，按这个顺序思考" class="headerlink" title="六、遇到类似题目时，按这个顺序思考"></a>六、遇到类似题目时，按这个顺序思考</h2><h3 id="第一步：先找题目要最大化或最小化什么"><a href="#第一步：先找题目要最大化或最小化什么" class="headerlink" title="第一步：先找题目要最大化或最小化什么"></a>第一步：先找题目要最大化或最小化什么</h3><ul>
+<li>“最大距离””最长长度””最小值尽可能大”：考虑二分答案。</li>
+<li>“有多少种图形”：考虑枚举和计数。</li>
+<li>“某个数等于几个数之和”：考虑排序、枚举、双指针。</li>
+</ul>
+<h3 id="第二步：想清楚怎样判断"><a href="#第二步：想清楚怎样判断" class="headerlink" title="第二步：想清楚怎样判断"></a>第二步：想清楚怎样判断</h3><p>二分答案题必须回答：</p>
+<blockquote>
+<p>如果我猜答案是 x，怎么快速判断 x 可不可行？</p>
+</blockquote>
+<p>如果答案越大越难满足，通常是： - 可行：尝试更大。 - 不可行：尝试更小。</p>
+<h3 id="第三步：看能否利用排序"><a href="#第三步：看能否利用排序" class="headerlink" title="第三步：看能否利用排序"></a>第三步：看能否利用排序</h3><p>排序经常能带来以下好处：</p>
+<ul>
+<li>让双指针成立。</li>
+<li>让二分查找成立。</li>
+<li>方便从最大候选值开始搜索。</li>
+</ul>
+<h3 id="第四步：检查边界和重复计算"><a href="#第四步：检查边界和重复计算" class="headerlink" title="第四步：检查边界和重复计算"></a>第四步：检查边界和重复计算</h3><p>写完代码后检查：</p>
+<ul>
+<li>是否有多组输入？是否要循环读入？</li>
+<li>是否需要特殊处理没有答案的情况？</li>
+<li>是否会重复计数？</li>
+<li>是否会使用同一个元素多次？</li>
+<li>是否可能出现整数溢出？</li>
+<li>输出格式是否要求保留两位小数？</li>
+</ul>
+<hr>
+<h2 id="七、建议记住的代码模板"><a href="#七、建议记住的代码模板" class="headerlink" title="七、建议记住的代码模板"></a>七、建议记住的代码模板</h2><h3 id="二分答案模板"><a href="#二分答案模板" class="headerlink" title="二分答案模板"></a>二分答案模板</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> left = 最小可能值;<br><span class="hljs-type">int</span> right = 最大可能值;<br><span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;<br><br><span class="hljs-keyword">while</span> (left &lt;= right)<br>&#123;<br>    <span class="hljs-type">int</span> mid = left + (right - left) / <span class="hljs-number">2</span>;<br><br>    <span class="hljs-keyword">if</span> (mid 可行)<br>    &#123;<br>        ans = mid;<br>        left = mid + <span class="hljs-number">1</span>;  <span class="hljs-comment">// 求最大可行值</span><br>    &#125;<br>    <span class="hljs-keyword">else</span><br>    &#123;<br>        right = mid - <span class="hljs-number">1</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>如果题目要求”最小可行值”，可行时通常应该缩小右边界，而不是扩大左边界。</p>
+<h3 id="双指针模板"><a href="#双指针模板" class="headerlink" title="双指针模板"></a>双指针模板</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> left = <span class="hljs-number">0</span>;<br><span class="hljs-type">int</span> right = n - <span class="hljs-number">1</span>;<br><br><span class="hljs-keyword">while</span> (left &lt; right)<br>&#123;<br>    <span class="hljs-type">int</span> sum = a[left] + a[right];<br><br>    <span class="hljs-keyword">if</span> (sum == target)<br>    &#123;<br>        <span class="hljs-comment">/* 找到 */</span><br>        <span class="hljs-keyword">break</span>;<br>    &#125;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (sum &lt; target)<br>        left++;<br>    <span class="hljs-keyword">else</span><br>        right--;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>双指针通常要求数组有序，并且具体题目可能需要额外检查下标是否重复。</p>
+<hr>
+<h2 id="八、最后总结"><a href="#八、最后总结" class="headerlink" title="八、最后总结"></a>八、最后总结</h2><p>这四道题最值得掌握的不是具体题目，而是四种思考方式：</p>
+<ol>
+<li>二分答案：不断猜答案，缩小范围。</li>
+<li>贪心判断：用简单规则快速检查猜测值是否可行。</li>
+<li>几何枚举：根据已知点计算其他点，再判断是否存在。</li>
+<li>排序与双指针：把多重枚举转化成更高效的查找。</li>
+</ol>
+<p>练习新题时，可以先不写代码，先用一句话说清楚”我要枚举什么”和”怎么判断符合条件”。这两点想清楚后，再把它们翻译成循环和<br><code>if-else</code>，会容易很多。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="category-chain-item">学习</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E5%AD%A6%E4%B9%A0/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%AE%97%E6%B3%95/" class="print-no-link">#算法</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>查找题解</div>
+      <div>https://lin00xxx.github.io/2026/10/31/notes/查找题解/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>dokiii</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>October 31, 2026</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/10/31/notes/Untitled/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
